@@ -20,6 +20,7 @@
     "dependencies": {
         "@inertiajs/progress": "^0.2.7",
         "@inertiajs/react": "^2.0.9",
+        "@popperjs/core": "^2.11.8",
         "@types/bootstrap": "^5.2.10",
         "@types/jest": "^29.5.14",
         "@types/node": "^22.15.17",
@@ -28,6 +29,7 @@
         "@vitejs/plugin-react": "^4.4.1",
         "bootstrap": "^5.3.6",
         "react": "^19.1.0",
+        "react-bootstrap": "^2.10.10",
         "react-dom": "^19.1.0",
         "typescript": "^5.8.3"
     }
