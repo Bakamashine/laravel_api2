@@ -28,11 +28,11 @@ class UserRequest extends FormRequest
         ];
     }
     
-    public function messages() {
-        return  [
-            'unique' => 'Такой логин уже существует!',
-            'password.min' => "Пароль должен быть минимум 8 символов",
-            'password.confirmed' => "Пароли должны совпадать"
-        ];
-    }
+    // public function messages() {
+    //     return  [
+    //         'unique' => 'Такой логин уже существует!',
+    //         'password.min' => "Пароль должен быть минимум 8 символов",
+    //         'password.confirmed' => "Пароли должны совпадать"
+    //     ];
+    // }
 }

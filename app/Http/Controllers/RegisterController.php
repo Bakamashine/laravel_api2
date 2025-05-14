@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Http\Requests\RegisterRequest;
-use App\Models\User;
 use App\Services\RegisterService;
 
 class RegisterController extends Controller
@@ -16,12 +15,15 @@ class RegisterController extends Controller
      * @param RegisterRequest $request
      * @return mixed|\Illuminate\Http\JsonResponse
      */
-    public function __invoke(RegisterRequest $request)
+    public function __invoke(RegisterRequest $request): JsonResponse
     {
         $request->validated();
         
         RegisterService::store($request->all());
 
+        return response()->json([
+            "success" => true            
+        ]);
         // try {
         //     return $this->isSuccess([
         //         'user' => $user,
