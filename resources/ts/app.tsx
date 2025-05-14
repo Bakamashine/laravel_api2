@@ -12,11 +12,6 @@ createInertiaApp({
             import.meta.glob("./Pages/**/*.tsx", {
                 eager: true,
             });
-        // let page = pages[`./Pages/${name}.tsx`];
-        // page.default.layout =
-        //     page.default.layout || ((page) => <Layout children={page} />);
-        // return page;
-        
         return pages[`./Pages/${name}.tsx`];
     },
     setup({ el, App, props }) {
