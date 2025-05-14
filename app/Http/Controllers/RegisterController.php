@@ -9,7 +9,6 @@ use App\Services\RegisterService;
 class RegisterController extends Controller
 {
     
-    use \App\ApiHelper;
     /**
      * Регистрация посредством API
      * @param RegisterRequest $request
