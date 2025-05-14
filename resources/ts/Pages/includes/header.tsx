@@ -6,6 +6,8 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { route } from 'ziggy-js';
 
 function Header() {
+    
+    console.log(route('login'))
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
@@ -20,8 +22,9 @@ function Header() {
                         <Nav>
                             <Link href={route("admin")}>Административная страница</Link>
                         </Nav>
-
-                        <Nav.Link href="#link">Link</Nav.Link>
+                        <Nav>
+                            <Link href={route("login")}>Авторизоваться</Link>
+                        </Nav>
                         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">
                                 Action

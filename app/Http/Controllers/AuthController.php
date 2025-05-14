@@ -22,18 +22,8 @@ class AuthController extends Controller
 
     }
 
-    public function logout()
-    {
-        try {
-            $user = auth('sanctum')->user();
-            if ($user) {
-                $user->currentAccessToken()->delete();
-            } else {
-                return $this->codeAndMessage("Вы не авторизированы");
-            }
-        } catch (\Exception $e) {
-            return $this->codeAndMessage($e->getMessage(), 500);
-        }
+    public function up() {
+        return inertia("auth/login");
     }
 
 }
