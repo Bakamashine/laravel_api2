@@ -8,7 +8,6 @@ import { router } from "@inertiajs/react";
 
 function Header() {
     
-    console.log(route('login'))
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
