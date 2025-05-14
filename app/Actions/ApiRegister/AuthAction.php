@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\ApiRegister;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
 use Hash;

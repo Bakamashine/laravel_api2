@@ -12,7 +12,7 @@ interface LoginInterface {
 }
 
 function Auth() {
-    const {errors} = usePage<{errors: Error}>().props;
+    const { errors } = usePage<{ errors: Error }>().props;
 
     const [values, setValues] = useState<LoginInterface>({
         email: "",
@@ -28,7 +28,7 @@ function Auth() {
     }
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        router.post("/auth", values as Record<string, any>);
+        router.post("/login", values as Record<string, any>);
     }
 
     return (
@@ -44,8 +44,9 @@ function Auth() {
                         onChange={handleChange}
                         value={values.email}
                     />
+                    <p className="red">{errors.email}</p>
                 </Form.Group>
-                
+
                 <Form.Group className="mb-3" controlId="password">
                     <Form.Label>Пароль</Form.Label>
                     <Form.Control
@@ -55,7 +56,7 @@ function Auth() {
                         value={values.password}
                     />
                 </Form.Group>
-                <p className="red">{errors.email}</p>
+                    <p className="red">{errors.password}</p>
                 <Button variant="primary" type="submit">
                     Авторизоваться
                 </Button>

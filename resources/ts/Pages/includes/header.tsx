@@ -4,6 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { route } from 'ziggy-js';
+import { router } from "@inertiajs/react";
 
 function Header() {
     
@@ -15,7 +16,6 @@ function Header() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        {/* <Nav.Link href={route("main")}>Главная страница</Nav.Link> */}
                         <Nav>
                             <Link href={route("main")}>Главная страница</Link>
                         </Nav>
@@ -24,6 +24,9 @@ function Header() {
                         </Nav>
                         <Nav>
                             <Link href={route("login")}>Авторизоваться</Link>
+                        </Nav>
+                        <Nav>
+                            <Link method="post" href={route("logout")}>Выход</Link>
                         </Nav>
                         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">
