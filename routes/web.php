@@ -7,4 +7,4 @@ use App\Http\Controllers\RegisterController;
 Route::inertia("/", 'index');
 Route::inertia("/admin", 'admin');
 
-Route::post("/register", [RegisterController::class, '__invoke']);
+Route::post("/register", RegisterController::class);
