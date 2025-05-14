@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { JSX, ReactNode, FC } from "react";
+import Layout from "./Layout";
 
-const Fake: React.FC = () => {
-    return (
-        <div>Fake</div>
-    )
+interface MainComponentType extends FC {
+    layout?: (page: ReactNode) => JSX.Element;
 }
 
-export default Fake
+const Main: MainComponentType = () => {
+    return (
+        <>
+            <div>Главная страница</div>
+        </>
+    );
+};
+
+Main.layout = page => <Layout children={page} />
+export default Main;
