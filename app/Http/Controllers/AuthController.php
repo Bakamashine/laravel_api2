@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\AuthAction;
-use Hash;
 use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -18,21 +15,10 @@ class AuthController extends Controller
      */
     public function __invoke(Request $request)
     {
-        // try {
-        //     $user = User::where('login', $request->login)->first();
-        //     if (!$user || !Hash::check($request->password, $user->password)) {
-        //         throw ValidationException::withMessages(['login' => 'Такого пользователя не существует']);
-        //     } else {
-        //         return $this->isSuccess(['user' => $user, 'token' => $user->createToken("user_token", json_decode($user->role->abilities))->plainTextToken]);
-        //     }
-        // } catch (ValidationException $e) {
-        //     return $this->ValidateError($e->validator->errors()->all());
-        // }
-        
-        try {
-            AuthAction::store($request);
-            return $this->isSuccess(['user' => $user, 'token' => $user->createToken("user_token", json_decode($user->role->abilities))->plainTextToken]);
-        }
+        $user = AuthAction::store($request);
+        return response()->json([
+            "token" => $user->createToken("user_token")->plainTextToken
+        ]);
 
     }
 

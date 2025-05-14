@@ -22,15 +22,6 @@ class RegisterController extends Controller
 
         return response()->json([
             "success" => true            
-        ]);
-        // try {
-        //     return $this->isSuccess([
-        //         'user' => $user,
-        //         'token' => $user->createToken("user_token", json_decode($user->role->abilities))->plainTextToken
-        //     ]);
-        // } catch (Exception $exception) {
-        //     $user->delete();
-        //     return $this->Error($exception->getMessage());
-        // }
+        ], 201);
     }
 }

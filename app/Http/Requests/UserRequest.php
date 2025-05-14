@@ -23,10 +23,16 @@ class UserRequest extends FormRequest
     {
         return [
             'email' => 'required|unique:users,email',
-            'password' => 'required|string|min:8|confirmed'
+            // 'password' => 'required|string|min:8|confirmed'
+            'password' => [
+                'required',
+                'string',
+                'min:5',
+                'regex:/^(?=.*[A-Z])(?=.*[\\W_])[a-zA-Z\\W_]+$/',
+            ]
         ];
     }
-    
+
     // public function messages() {
     //     return  [
     //         'unique' => 'Такой логин уже существует!',

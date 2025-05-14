@@ -7,12 +7,12 @@ use Hash;
 
 class AuthAction
 {
-    public static function store(\Illuminate\Http\Request $request)
+    public static function store(\Illuminate\Http\Request $request): User
     {
 
-        $user = User::where('login', $request->login)->first();
+        $user = User::where('email', $request->email)->first();
         if (!$user || !Hash::check($request->password, $user->password))
-            throw ValidationException::withMessages(['login' => 'Такого пользователя не существует']);
-
+            throw ValidationException::withMessages(['email' => 'Такого пользователя не существует']);
+        return $user;
     }
 }
