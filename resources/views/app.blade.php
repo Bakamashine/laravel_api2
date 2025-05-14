@@ -8,6 +8,7 @@
     @inertiaHead
   </head>
   <body>
+    @routes
     @inertia
   
     {{-- <script src="{{ asset('/resources/ts/bootstrap.js') }}"></script> --}}

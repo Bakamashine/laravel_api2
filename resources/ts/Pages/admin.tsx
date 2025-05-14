@@ -1,13 +1,12 @@
 import React from "react";
 import Header from "./includes/header";
+import Layout from "./Layout";
 
 const Admin: React.FC = () => {
     return (
-        <div>
-            {/* <Header /> */}
-
+        <Layout>
             <h1 className="text-center">Административная страница</h1>
-        </div>
+        </Layout>
     );
 };
 
