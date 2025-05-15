@@ -2,10 +2,11 @@ import React, { ChangeEvent, FormEvent, JSX, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FloatingLabel, Pagination, Table } from "react-bootstrap";
-import { router, usePage } from "@inertiajs/react";
+import { Link, router, usePage } from "@inertiajs/react";
 import Layout_Admin from "../layout_admin";
 import { Category, CategoryOutput } from "../../interfaces";
 import Paginate from "../../components/Paginate";
+import { route } from "ziggy-js";
 
 function CreateCateg({ category }: { category: CategoryOutput }) {
     const { errors } = usePage<{ errors: Error }>().props;
@@ -78,6 +79,17 @@ function CreateCateg({ category }: { category: CategoryOutput }) {
                             <td>{item.id}</td>
                             <td>{item.name}</td>
                             <td>{item.description}</td>
+                            <td>
+                                <Link
+                                    className="btn btn-danger"
+                                    method="delete"
+                                    href={route("category.destroy", {
+                                        category: item.id,
+                                    })}
+                                >
+                                    Удалить
+                                </Link>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

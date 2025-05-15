@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use App\Services\CategoryService;
 use App\Services\LowService;
+use Request;
 
 class CategoryController extends AdminController
 {
@@ -68,6 +69,6 @@ class CategoryController extends AdminController
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
     }
 }
