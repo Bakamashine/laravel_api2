@@ -50,6 +50,7 @@ function CreateCategory() {
                         placeholder="Leave a comment here"
                         style={{ height: "100px" }}
                         onChange={handleChange}
+                        value={values.description}
                     />
                 </FloatingLabel>
                 <p className="red">{errors.description}</p>
