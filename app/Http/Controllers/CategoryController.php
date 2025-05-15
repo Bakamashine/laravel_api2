@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use App\Services\CategoryService;
 use App\Services\LowService;
 
 class CategoryController extends AdminController
@@ -15,7 +16,10 @@ class CategoryController extends AdminController
      */
     public function index()
     {
-        return inertia($this->path_admin_component . "/CreateCateg");
+        return inertia(
+            $this->path_admin_component . "/CreateCateg",
+            ['category' => CategoryService::getAll()]
+        );
     }
 
     /**
@@ -32,7 +36,7 @@ class CategoryController extends AdminController
     public function store(StoreCategoryRequest $request)
     {
         $request->validated();
-        LowService::create($request->all(), Category::class);
+        CategoryService::create($request->all());
     }
 
     /**

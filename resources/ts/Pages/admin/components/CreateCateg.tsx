@@ -1,18 +1,22 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { FloatingLabel } from "react-bootstrap";
+import { FloatingLabel, Table } from "react-bootstrap";
 import { router, usePage } from "@inertiajs/react";
 import Layout_Admin from "../layout_admin";
 
 interface Category {
+    id? : number;
     name: string;
     description: string;
 }
-function CreateCateg() {
+
+
+function CreateCateg({ category }: { category: Array<Category> }) {
     const { errors } = usePage<{ errors: Error }>().props;
 
     const [values, setValues] = useState<Category>({
+
         name: "",
         description: "",
     });
@@ -29,7 +33,7 @@ function CreateCateg() {
             [id]: value,
         }));
     }
-    
+
     return (
         <Layout_Admin>
             <Form className="m-3 bg-form" onSubmit={handleSubmit}>
@@ -44,25 +48,44 @@ function CreateCateg() {
                     <p className="red">{errors.name}</p>
                 </Form.Group>
 
-                    <Form.Label>Описание</Form.Label>
+                <Form.Label>Описание</Form.Label>
 
-                    <FloatingLabel
-                        className="mb-3"
-                        controlId="description"
-                        label="Введите ваше описание..."
-                    >
-                        <Form.Control
-                            as="textarea"
-                            placeholder="Leave a comment here"
-                            style={{ height: "100px" }}
-                            onChange={handleChange}
-                        />
-                    </FloatingLabel>
+                <FloatingLabel
+                    className="mb-3"
+                    controlId="description"
+                    label="Введите ваше описание..."
+                >
+                    <Form.Control
+                        as="textarea"
+                        placeholder="Leave a comment here"
+                        style={{ height: "100px" }}
+                        onChange={handleChange}
+                    />
+                </FloatingLabel>
                 <p className="red">{errors.description}</p>
                 <Button variant="primary" type="submit">
                     Создать категорию
                 </Button>
             </Form>
+
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Название</th>
+                        <th>Описание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {category.map((item) => (
+                        <tr key={item.id}>
+                            <td>{item.id}</td>
+                            <td>{item.name}</td>
+                            <td>{item.description}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </Table>
         </Layout_Admin>
     );
 }
