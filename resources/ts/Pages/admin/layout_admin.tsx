@@ -1,17 +1,19 @@
-import React from "react";
-import Layout from "./Layout";
+import React, { ReactNode } from "react";
+import Layout from "../Layout";
 import CreateCateg from "./components/CreateCateg";
 
-const Admin: React.FC = () => {
+const Layout_Admin = ({ children }: { children: ReactNode }) => {
     return (
         <Layout>
             <div className="mt-2">
                 <h4 className="text-center">Административная страница</h4>
                 
-                    <CreateCateg />
+                <main>
+                    {children}
+                </main>
             </div>
         </Layout>
     );
 };
 
-export default Admin;
+export default Layout_Admin;

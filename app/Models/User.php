@@ -14,7 +14,7 @@ use Laravel\Sanctum\HasApiTokens;
  * 
  *
  * @property int $id
- * @property int|null $role_id
+ * @property int $role_id
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
@@ -26,7 +26,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string|null $two_factor_confirmed_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
- * @property-read \App\Models\Role|null $role
+ * @property-read \App\Models\Role $role
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])

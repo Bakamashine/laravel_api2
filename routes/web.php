@@ -4,6 +4,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AdminController;
+
+
 
 Route::inertia("/", 'index')->name("main");
 
@@ -13,9 +16,8 @@ Route::middleware('auth')
         Route::middleware('admin')
             ->group(
                 function () {
-                    Route::inertia("/admin", 'admin')
+                    Route::get("/admin", [AdminController::class, 'index'])
                         ->name("admin");
-
                     Route::resource("/category", CategoryController::class);
                 }
             );

@@ -15,6 +15,37 @@ declare module 'ziggy-js' {
     ],
     "main": [],
     "admin": [],
+    "category.index": [],
+    "category.create": [],
+    "category.store": [],
+    "category.show": [
+        {
+            "name": "category",
+            "required": true,
+            "binding": "id"
+        }
+    ],
+    "category.edit": [
+        {
+            "name": "category",
+            "required": true,
+            "binding": "id"
+        }
+    ],
+    "category.update": [
+        {
+            "name": "category",
+            "required": true,
+            "binding": "id"
+        }
+    ],
+    "category.destroy": [
+        {
+            "name": "category",
+            "required": true,
+            "binding": "id"
+        }
+    ],
     "login": [],
     "register": [],
     "storage.local": [

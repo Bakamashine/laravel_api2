@@ -7,14 +7,15 @@ use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use App\Services\LowService;
 
-class CategoryController extends Controller
+class CategoryController extends AdminController
 {
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return inertia($this->path_admin_component . "/CreateCateg");
     }
 
     /**

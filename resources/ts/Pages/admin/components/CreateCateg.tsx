@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FloatingLabel } from "react-bootstrap";
 import { router, usePage } from "@inertiajs/react";
+import Layout_Admin from "../layout_admin";
 
 interface Category {
     name: string;
@@ -30,7 +31,7 @@ function CreateCateg() {
     }
     
     return (
-        <>
+        <Layout_Admin>
             <Form className="m-3 bg-form" onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="name">
                     <Form.Label>Название категории</Form.Label>
@@ -62,7 +63,7 @@ function CreateCateg() {
                     Создать категорию
                 </Button>
             </Form>
-        </>
+        </Layout_Admin>
     );
 }
 
