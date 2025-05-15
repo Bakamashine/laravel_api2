@@ -17,20 +17,20 @@ function Header() {
                 <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav>
-                            <Link href={route("main")}>Главная страница</Link>
+                    <Nav className="me-auto p-2">
+                        <Nav className="m-2">
+                            <Link className="btn btn-dark" href={route("main")}>Главная страница</Link>
                         </Nav>
                         {user !== undefined && user !== null ? (
                             <>
-                                <Nav>
-                                    <Link method="post" href={route("logout")}>
+                                <Nav className="m-2">
+                                    <Link className="btn btn-danger " method="post" href={route("logout")}>
                                         Выход
                                     </Link>
                                 </Nav>
                                 {user.role_name === "admin" && (
-                                    <Nav>
-                                        <Link href={route("admin")}>
+                                    <Nav className="m-2">
+                                        <Link className="btn btn-dark" href={route("admin")}>
                                             Административная страница
                                         </Link>
                                     </Nav>
