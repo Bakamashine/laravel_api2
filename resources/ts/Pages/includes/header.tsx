@@ -1,13 +1,16 @@
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { route } from 'ziggy-js';
+import { route } from "ziggy-js";
 import { router } from "@inertiajs/react";
+import { User } from "../Layout";
 
 function Header() {
-    
+    const { props } = usePage<{ auth: { user: User } }>();
+    const user = props.auth.user;
+
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
@@ -18,18 +21,35 @@ function Header() {
                         <Nav>
                             <Link href={route("main")}>Главная страница</Link>
                         </Nav>
-                        <Nav>
-                            <Link href={route("admin")}>Административная страница</Link>
-                        </Nav>
-                        <Nav>
-                            <Link href={route("login")}>Авторизоваться</Link>
-                        </Nav>
-                        <Nav>
-                            <Link href={route("register")}>Регистрация</Link>
-                        </Nav>
-                        <Nav>
-                            <Link method="post" href={route("logout")}>Выход</Link>
-                        </Nav>
+                        {user !== undefined && user !== null ? (
+                            <>
+                                <Nav>
+                                    <Link method="post" href={route("logout")}>
+                                        Выход
+                                    </Link>
+                                </Nav>
+                                {user.role_name === "admin" && (
+                                    <Nav>
+                                        <Link href={route("admin")}>
+                                            Административная страница
+                                        </Link>
+                                    </Nav>
+                                )}
+                            </>
+                        ) : (
+                            <>
+                                <Nav>
+                                    <Link href={route("login")}>
+                                        Авторизоваться
+                                    </Link>
+                                </Nav>
+                                <Nav>
+                                    <Link href={route("register")}>
+                                        Регистрация
+                                    </Link>
+                                </Nav>
+                            </>
+                        )}
                         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">
                                 Action

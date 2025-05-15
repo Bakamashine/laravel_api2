@@ -1,9 +1,15 @@
 import React, { Children, ReactNode, useEffect } from "react";
-
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import Header from "./includes/header";
 
+export interface User {
+    name: string;
+    role_name: string
+    email: string;
+}
+
 const Layout = ({ children }: { children: ReactNode }) => {
+
     return (
         <>
             <main>
@@ -12,8 +18,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
                 </header>
 
                 <article>{children}</article>
-                
-                
             </main>
         </>
     )

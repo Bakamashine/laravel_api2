@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
 /**
@@ -23,7 +24,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Role extends Model
 {
-    
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -31,8 +32,8 @@ class Role extends Model
         "abilities"
     ];
 
-    public function user(): BelongsTo
+    public function user(): HasMany
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class);
     }
 }
