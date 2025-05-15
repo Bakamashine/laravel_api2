@@ -9,9 +9,15 @@ use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
 Route::inertia("/", 'index')->name("main");
 
+Route::middleware('auth')
+->group(function () {
+    Route::inertia("/admin", 'admin')
+    ->name("admin")
+    ->middleware('admin');
+});
+
 Route::middleware("guest")
     ->group(function () {
-        Route::inertia("/admin", 'admin')->name("admin");
         Route::get("/login", [AuthController::class, 'up'])->name('login');
         Route::get("/register", [RegisterController::class, 'up'])->name("register");
     });
