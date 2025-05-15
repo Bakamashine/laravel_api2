@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FloatingLabel } from "react-bootstrap";
+import { router } from "@inertiajs/react";
 
 interface Category {
     name: string;
@@ -13,9 +14,18 @@ function CreateCateg() {
         description: "",
     });
 
-    function handleSubmit() {}
+    function handleSubmit(e: FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        router.post("/category", values as Record<string, any>);
+    }
 
-    function handleChange() {}
+    function handleChange(e: ChangeEvent<HTMLInputElement>) {
+        const { id, value } = e.target;
+        setValues((prevValues) => ({
+            ...prevValues,
+            [id]: value,
+        }));
+    }
 
     return (
         <>

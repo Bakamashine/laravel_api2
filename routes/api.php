@@ -20,6 +20,4 @@ Route::get('/user', function (Request $request) {
 
 Route::post("/auth", AuthController::class);
 Route::post("/logout", LogoutController::class);
-
-
 Route::post("/register", RegisterController::class);
