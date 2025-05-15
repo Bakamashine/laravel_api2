@@ -25,6 +25,9 @@ function Header() {
                             <Link href={route("login")}>Авторизоваться</Link>
                         </Nav>
                         <Nav>
+                            <Link href={route("register")}>Регистрация</Link>
+                        </Nav>
+                        <Nav>
                             <Link method="post" href={route("logout")}>Выход</Link>
                         </Nav>
                         <NavDropdown title="Dropdown" id="basic-nav-dropdown">

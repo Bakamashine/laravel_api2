@@ -24,4 +24,8 @@ class RegisterController extends Controller
             "success" => true            
         ], 201);
     }
+    
+    public function up() {
+        return inertia("auth/register");
+    }
 }

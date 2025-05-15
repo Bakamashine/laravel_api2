@@ -13,7 +13,6 @@ use Laravel\Sanctum\HasApiTokens;
  * 
  *
  * @property int $id
- * @property string $name
  * @property int|null $role_id
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
@@ -38,7 +37,6 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereRoleId($value)

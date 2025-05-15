@@ -13,4 +13,5 @@ Route::middleware("guest")
     ->group(function () {
         Route::inertia("/admin", 'admin')->name("admin");
         Route::get("/login", [AuthController::class, 'up'])->name('login');
+        Route::get("/register", [RegisterController::class, 'up'])->name("register");
     });
