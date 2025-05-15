@@ -21,8 +21,13 @@ class StoreProductRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $category_rule = (new UpdateCategoryRequest())->rules();
+        return array_merge(
+            $category_rule,
+            [
+                'price' => ['integer', 'required'],
+                'image_urls' => ['image', 'mimetypes:image/jpeg,image/png'],
+            ]
+        );
     }
 }

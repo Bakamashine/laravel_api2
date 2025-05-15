@@ -12,18 +12,17 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(UpdateCategoryRequest $request)
+    public function index()
     {
-        
+        //
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(UpdateCategoryRequest $request)
+    public function create()
     {
-        $request->validated();
-        LowService::create($request->all(), Category::class);
+        //
     }
 
     /**
@@ -31,7 +30,8 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $request->validated();
+        LowService::create($request->all(), Category::class);
     }
 
     /**

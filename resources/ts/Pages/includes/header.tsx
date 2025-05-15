@@ -38,13 +38,13 @@ function Header() {
                             </>
                         ) : (
                             <>
-                                <Nav>
-                                    <Link href={route("login")}>
+                                <Nav className="m-2">
+                                    <Link className="btn btn-dark" href={route("login")}>
                                         Авторизоваться
                                     </Link>
                                 </Nav>
-                                <Nav>
-                                    <Link href={route("register")}>
+                                <Nav className="m-2">
+                                    <Link className="btn btn-dark" href={route("register")}>
                                         Регистрация
                                     </Link>
                                 </Nav>

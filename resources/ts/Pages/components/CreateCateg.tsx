@@ -1,14 +1,16 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FloatingLabel } from "react-bootstrap";
-import { router } from "@inertiajs/react";
+import { router, usePage } from "@inertiajs/react";
 
 interface Category {
     name: string;
     description: string;
 }
 function CreateCateg() {
+    const { errors } = usePage<{ errors: Error }>().props;
+
     const [values, setValues] = useState<Category>({
         name: "",
         description: "",
@@ -26,36 +28,36 @@ function CreateCateg() {
             [id]: value,
         }));
     }
-
+    
     return (
         <>
             <Form className="m-3 bg-form" onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="name">
                     <Form.Label>Название категории</Form.Label>
                     <Form.Control
-                        type="email"
+                        type="text"
                         placeholder="Введите название категории"
                         onChange={handleChange}
                         value={values.name}
                     />
-                    {/* <p className="red">{errors.email}</p> */}
+                    <p className="red">{errors.name}</p>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="description">
                     <Form.Label>Описание</Form.Label>
 
                     <FloatingLabel
-                        controlId="floatingTextarea2"
+                        className="mb-3"
+                        controlId="description"
                         label="Введите ваше описание..."
                     >
                         <Form.Control
                             as="textarea"
                             placeholder="Leave a comment here"
                             style={{ height: "100px" }}
+                            onChange={handleChange}
                         />
                     </FloatingLabel>
-                </Form.Group>
-                {/* <p className="red">{errors.password}</p> */}
+                <p className="red">{errors.description}</p>
                 <Button variant="primary" type="submit">
                     Создать категорию
                 </Button>
