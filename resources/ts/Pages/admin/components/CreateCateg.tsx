@@ -5,12 +5,19 @@ import { FloatingLabel, Pagination, Table } from "react-bootstrap";
 import { router, usePage } from "@inertiajs/react";
 import Layout_Admin from "../layout_admin";
 
+
+/**
+ * Поля Категории
+ */
 interface Category {
     id?: number;
     name: string;
     description: string;
 }
 
+/**
+ * Принятие данных с контроллера с пагинацией
+ */
 interface CategoryOutput {
     current_page: number;
     data: Category[];
@@ -27,8 +34,8 @@ interface CategoryOutput {
     path: string;
     per_page: number;
     prev_page_url: null;
-    to: 5;
-    total: 6;
+    to: number;
+    total: number;
 }
 
 function CreateCateg({ category }: { category: CategoryOutput }) {

@@ -7,6 +7,12 @@ use Hash;
 
 class AuthAction
 {
+    
+    /**
+     * Авторизация через API
+     * @param \Illuminate\Http\Request $request
+     * @return User
+     */
     public static function store(\Illuminate\Http\Request $request): User
     {
 
