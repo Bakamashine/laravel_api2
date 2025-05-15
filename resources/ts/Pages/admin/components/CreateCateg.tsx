@@ -1,22 +1,42 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, FormEvent, JSX, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { FloatingLabel, Table } from "react-bootstrap";
+import { FloatingLabel, Pagination, Table } from "react-bootstrap";
 import { router, usePage } from "@inertiajs/react";
 import Layout_Admin from "../layout_admin";
 
 interface Category {
-    id? : number;
+    id?: number;
     name: string;
     description: string;
 }
 
+interface CategoryOutput {
+    current_page: number;
+    data: Category[];
+    first_page_url: string;
+    from: number;
+    last_page: number;
+    last_page_url: string;
+    links: {
+        active: boolean;
+        label: string;
+        url: string;
+    }[];
+    next_page_url: string;
+    path: string;
+    per_page: number;
+    prev_page_url: null;
+    to: 5;
+    total: 6;
+}
 
-function CreateCateg({ category }: { category: Array<Category> }) {
+function CreateCateg({ category }: { category: CategoryOutput }) {
     const { errors } = usePage<{ errors: Error }>().props;
 
-    const [values, setValues] = useState<Category>({
+    console.log(category);
 
+    const [values, setValues] = useState<Category>({
         name: "",
         description: "",
     });
@@ -32,6 +52,20 @@ function CreateCateg({ category }: { category: Array<Category> }) {
             ...prevValues,
             [id]: value,
         }));
+    }
+
+    let active = category.current_page;
+    let items: JSX.Element[] = [];
+    for (let number = 1; number <= category.last_page; number++) {
+        items.push(
+            <Pagination.Item
+                key={number}
+                active={number === active}
+                onClick={() => router.get(category.links[number].url)} // Переход по URL
+            >
+                {number}
+            </Pagination.Item>
+        );
     }
 
     return (
@@ -77,7 +111,7 @@ function CreateCateg({ category }: { category: Array<Category> }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {category.map((item) => (
+                    {category.data.map((item) => (
                         <tr key={item.id}>
                             <td>{item.id}</td>
                             <td>{item.name}</td>
@@ -86,6 +120,10 @@ function CreateCateg({ category }: { category: Array<Category> }) {
                     ))}
                 </tbody>
             </Table>
+
+            <div className="pt-2">
+                <Pagination>{items}</Pagination>
+            </div>
         </Layout_Admin>
     );
 }

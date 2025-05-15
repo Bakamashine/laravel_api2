@@ -13,4 +13,8 @@ class CategoryService {
     public static function getAll() {
         return Category::all();
     }
+    
+    public static function getAllWithPaginate(int $number = 5) {
+        return Category::paginate($number);
+    }
 }
