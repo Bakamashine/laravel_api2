@@ -17,7 +17,10 @@ const Layout = ({ children }: { children: ReactNode }) => {
                     <Header />
                 </header>
 
-                <article>{children}</article>
+
+            <section className="oh_my_div">
+                {children}
+            </section>
             </main>
         </>
     )
