@@ -8,11 +8,13 @@ use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
 {
+    
+    use WithoutModelEvents;
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Category::factory()->count(5)->create();
+        Category::factory()->count(30)->create();
     }
 }

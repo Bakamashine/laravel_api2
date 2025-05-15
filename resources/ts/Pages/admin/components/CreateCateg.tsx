@@ -4,39 +4,8 @@ import Form from "react-bootstrap/Form";
 import { FloatingLabel, Pagination, Table } from "react-bootstrap";
 import { router, usePage } from "@inertiajs/react";
 import Layout_Admin from "../layout_admin";
-
-
-/**
- * Поля Категории
- */
-interface Category {
-    id?: number;
-    name: string;
-    description: string;
-}
-
-/**
- * Принятие данных с контроллера с пагинацией
- */
-interface CategoryOutput {
-    current_page: number;
-    data: Category[];
-    first_page_url: string;
-    from: number;
-    last_page: number;
-    last_page_url: string;
-    links: {
-        active: boolean;
-        label: string;
-        url: string;
-    }[];
-    next_page_url: string;
-    path: string;
-    per_page: number;
-    prev_page_url: null;
-    to: number;
-    total: number;
-}
+import { Category, CategoryOutput } from "../../interfaces";
+import Paginate from "../../components/Paginate";
 
 function CreateCateg({ category }: { category: CategoryOutput }) {
     const { errors } = usePage<{ errors: Error }>().props;
@@ -59,20 +28,6 @@ function CreateCateg({ category }: { category: CategoryOutput }) {
             ...prevValues,
             [id]: value,
         }));
-    }
-
-    let active = category.current_page;
-    let items: JSX.Element[] = [];
-    for (let number = 1; number <= category.last_page; number++) {
-        items.push(
-            <Pagination.Item
-                key={number}
-                active={number === active}
-                onClick={() => router.get(category.links[number].url)} // Переход по URL
-            >
-                {number}
-            </Pagination.Item>
-        );
     }
 
     return (
@@ -127,9 +82,8 @@ function CreateCateg({ category }: { category: CategoryOutput }) {
                     ))}
                 </tbody>
             </Table>
-
-            <div className="pt-2">
-                <Pagination>{items}</Pagination>
+            <div className="d-flex justify-content-center align-items-center">
+                <Paginate item={category} />
             </div>
         </Layout_Admin>
     );
