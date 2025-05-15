@@ -1,28 +1,21 @@
 import React, { ChangeEvent, FormEvent, JSX, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { FloatingLabel, Pagination, Table } from "react-bootstrap";
-import { Link, router, usePage } from "@inertiajs/react";
-import Layout_Admin from "../layout_admin";
-import { Category, CategoryOutput } from "../../interfaces";
-import Paginate from "../../components/Paginate";
-import { route } from "ziggy-js";
+import { FloatingLabel } from "react-bootstrap";
+import { router, usePage } from "@inertiajs/react";
+import { Category } from "../../interfaces";
 
-function CreateCateg({ category }: { category: CategoryOutput }) {
+function CreateCategory() {
     const { errors } = usePage<{ errors: Error }>().props;
-
-    console.log(category);
-
-    const [values, setValues] = useState<Category>({
-        name: "",
-        description: "",
-    });
-
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
         router.post("/category", values as Record<string, any>);
     }
 
+    const [values, setValues] = useState<Category>({
+        name: "",
+        description: "",
+    });
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         const { id, value } = e.target;
         setValues((prevValues) => ({
@@ -32,7 +25,7 @@ function CreateCateg({ category }: { category: CategoryOutput }) {
     }
 
     return (
-        <Layout_Admin>
+        <>
             <Form className="m-3 bg-form" onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="name">
                     <Form.Label>Название категории</Form.Label>
@@ -64,41 +57,8 @@ function CreateCateg({ category }: { category: CategoryOutput }) {
                     Создать категорию
                 </Button>
             </Form>
-
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Название</th>
-                        <th>Описание</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {category.data.map((item) => (
-                        <tr key={item.id}>
-                            <td>{item.id}</td>
-                            <td>{item.name}</td>
-                            <td>{item.description}</td>
-                            <td>
-                                <Link
-                                    className="btn btn-danger"
-                                    method="delete"
-                                    href={route("category.destroy", {
-                                        category: item.id,
-                                    })}
-                                >
-                                    Удалить
-                                </Link>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
-            <div className="d-flex justify-content-center align-items-center">
-                <Paginate item={category} />
-            </div>
-        </Layout_Admin>
+        </>
     );
 }
 
-export default CreateCateg;
+export default CreateCategory;

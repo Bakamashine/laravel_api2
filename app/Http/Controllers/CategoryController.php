@@ -18,7 +18,7 @@ class CategoryController extends AdminController
     public function index()
     {
         return inertia(
-            $this->path_admin_component . "/CreateCateg",
+            $this->path_category,
             ['category' => CategoryService::getAllWithPaginate()]
         );
     }

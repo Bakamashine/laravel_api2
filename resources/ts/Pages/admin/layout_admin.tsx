@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import Layout from "../Layout";
-import CreateCateg from "./components/CreateCateg";
+import CategoryPage from "./Category";
 
 const Layout_Admin = ({ children }: { children: ReactNode }) => {
     return (
