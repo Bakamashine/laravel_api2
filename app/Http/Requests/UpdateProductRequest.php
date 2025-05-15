@@ -11,7 +11,7 @@ class UpdateProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,13 @@ class UpdateProductRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $category_rule = (new UpdateCategoryRequest())->rules();
+        return array_merge(
+            $category_rule,
+            [
+                'price' => ['integer', 'required'],
+                'image_urls' => ['image', 'mimetypes:image/jpeg,image/png'],
+            ]
+        );
     }
 }

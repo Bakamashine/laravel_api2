@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string("name");
             $table->foreignId("category_id")
                 ->nullable()
                 ->constrained("categories")
@@ -19,7 +20,7 @@ return new class extends Migration {
             $table->longText("description");
             $table->integer("price");
             $table->string("image_urls");
-            $table->string("default_img");
+            $table->string("default_img")->nullable();
             $table->timestamps();
         });
     }

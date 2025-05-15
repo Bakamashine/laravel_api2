@@ -13,7 +13,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $id
  * @property string $role_name
  * @property string|null $abilities
- * @property-read \App\Models\User|null $user
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $user
+ * @property-read int|null $user_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Role newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Role newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Role query()

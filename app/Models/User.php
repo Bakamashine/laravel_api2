@@ -26,8 +26,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string|null $two_factor_confirmed_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Role> $role
- * @property-read int|null $role_count
+ * @property-read \App\Models\Role|null $role
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])

@@ -16,6 +16,7 @@ declare module 'ziggy-js' {
     "main": [],
     "admin": [],
     "login": [],
+    "register": [],
     "storage.local": [
         {
             "name": "path",
