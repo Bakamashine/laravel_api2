@@ -6,8 +6,8 @@ import { route } from 'ziggy-js';
 function Admin () {
     return (
         <Layout_Admin>
-            <p>Добро пожаловать на административную страницу!</p>
-            <Link href={route("category.index")}>Перейти в управление категориями</Link>
+            <p className="text-center">Добро пожаловать на административную страницу!</p>
+            <Link className="btn btn-dark w-100" href={route("category.index")}>Перейти в управление категориями</Link>
         </Layout_Admin>
     )
 }
