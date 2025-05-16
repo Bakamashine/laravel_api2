@@ -6,4 +6,5 @@ trait AdminTrait
 {
     public $path_admin = "admin";
     public $path_category = "admin/Category";
+    public $path_product = "admin/Product";
 }

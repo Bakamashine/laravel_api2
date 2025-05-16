@@ -32,7 +32,7 @@ function RightMenu() {
 
                 {/* Товары */}
 
-                <Link href="#" data-tooltip="Товары">
+                <Link href={route("product.index")} data-tooltip="Товары">
                     <svg
                         role="img"
                         aria-label="Notifications"

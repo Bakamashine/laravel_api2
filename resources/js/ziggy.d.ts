@@ -46,6 +46,37 @@ declare module 'ziggy-js' {
             "binding": "id"
         }
     ],
+    "product.index": [],
+    "product.create": [],
+    "product.store": [],
+    "product.show": [
+        {
+            "name": "product",
+            "required": true,
+            "binding": "id"
+        }
+    ],
+    "product.edit": [
+        {
+            "name": "product",
+            "required": true,
+            "binding": "id"
+        }
+    ],
+    "product.update": [
+        {
+            "name": "product",
+            "required": true,
+            "binding": "id"
+        }
+    ],
+    "product.destroy": [
+        {
+            "name": "product",
+            "required": true,
+            "binding": "id"
+        }
+    ],
     "login": [],
     "register": [],
     "storage.local": [

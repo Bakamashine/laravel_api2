@@ -13,7 +13,7 @@ class ProductController extends AdminController
      */
     public function index()
     {
-        //
+        return inertia($this->path_product);
     }
 
     /**

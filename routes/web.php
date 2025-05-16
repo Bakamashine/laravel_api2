@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
@@ -19,6 +20,7 @@ Route::middleware('auth')
                     Route::get("/admin", [AdminController::class, 'index'])
                         ->name("admin");
                     Route::resource("/category", CategoryController::class);
+                    Route::resource("/product", ProductController::class);
                 }
             );
     });
