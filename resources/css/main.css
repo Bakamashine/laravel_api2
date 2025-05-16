@@ -17,8 +17,9 @@ Form {
 
 .oh_my_div  {
     background-color: white;
-    border-radius: 20px 20px 0px 0px;
-    height: 1000px;
+    /* border-radius: 20px 20px 0px 0px; */
+    /* height: 1000px; */
+    border-radius: 20px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
