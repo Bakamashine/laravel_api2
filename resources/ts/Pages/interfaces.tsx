@@ -22,10 +22,32 @@ export interface CategoryOutput {
         label: string;
         url: string;
     }[];
-    next_page_url: string|null;
+    next_page_url: string | null;
     path: string;
     per_page: number;
-    prev_page_url: string|null;
+    prev_page_url: string | null;
     to: number;
     total: number;
+}
+
+export interface Product {
+    id: number;
+    name: string;
+    category_name: string;
+    description: string;
+    price: number;
+    image_urls: string;
+    default_img?: string;
+}
+
+export interface ProductInput {
+    name: string;
+    category_id: number;
+    description: string;
+    price: number;
+    image_urls: string;
+}
+
+export interface ProductOutput extends Omit<CategoryOutput, "data"> {
+    data: Product[];
 }

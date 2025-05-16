@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Http\Resources\ProductResource;
+use App\Models\Category;
 use App\Models\Product;
+use App\Services\LowService;
 
 class ProductController extends AdminController
 {
@@ -13,7 +16,14 @@ class ProductController extends AdminController
      */
     public function index()
     {
-        return inertia($this->path_product);
+        return inertia(
+            $this->path_product,
+            [
+                'category' => Category::all(),
+                // 'products' => LowService::getAllWithPaginate(Product::class)
+                'products' => new ProductResource(Product::all())
+            ]
+        );
     }
 
     /**
@@ -61,6 +71,6 @@ class ProductController extends AdminController
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
     }
 }
