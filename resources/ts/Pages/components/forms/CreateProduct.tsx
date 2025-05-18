@@ -3,6 +3,7 @@ import React, {
     ChangeEventHandler,
     FormEvent,
     JSX,
+    use,
     useEffect,
     useState,
 } from "react";
@@ -23,7 +24,7 @@ function CreateProduct({ category }: { category: Array<CategoryInput> }) {
 
     const [values, setValues] = useState<ProductInput>({
         name: "",
-        category_id: 0,
+        category_id: 1,
         description: "",
         price: 0,
         image_urls: null,
@@ -56,7 +57,7 @@ function CreateProduct({ category }: { category: Array<CategoryInput> }) {
             }));
         }
     }
-
+    
     return (
         <>
             <Form className="m-3 bg-form" onSubmit={handleSubmit}>
@@ -81,7 +82,7 @@ function CreateProduct({ category }: { category: Array<CategoryInput> }) {
                     >
                         {category.map((item) => (
                             <>
-                                <option key={item.id} value={item.id+1}>
+                                <option key={item.id} value={item.id}>
                                     {item.name}
                                 </option>
                             </>
