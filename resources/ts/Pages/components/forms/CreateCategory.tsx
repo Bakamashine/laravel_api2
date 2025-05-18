@@ -7,6 +7,8 @@ import { Category } from "../../interfaces";
 
 function CreateCategory() {
     const { errors } = usePage<{ errors: Error }>().props;
+    
+
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
         router.post("/category", values as Record<string, any>);
@@ -16,6 +18,7 @@ function CreateCategory() {
         name: "",
         description: "",
     });
+
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         const { id, value } = e.target;
         setValues((prevValues) => ({

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\ProductAction;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Resources\ProductResource;
@@ -20,8 +21,7 @@ class ProductController extends AdminController
             $this->path_product,
             [
                 'category' => Category::all(),
-                // 'products' => LowService::getAllWithPaginate(Product::class)
-                'products' => new ProductResource(Product::all())
+                'products' => LowService::getAllWithPaginate(Product::class)
             ]
         );
     }
@@ -39,7 +39,8 @@ class ProductController extends AdminController
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        $request->validated();
+        ProductAction::create($request->all());
     }
 
     /**

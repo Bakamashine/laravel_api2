@@ -45,7 +45,7 @@ export interface ProductInput {
     category_id: number;
     description: string;
     price: number;
-    image_urls: string;
+    image_urls: File|null;
 }
 
 export interface ProductOutput extends Omit<CategoryOutput, "data"> {

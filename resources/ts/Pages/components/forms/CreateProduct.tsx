@@ -1,4 +1,11 @@
-import React, { ChangeEvent, FormEvent, JSX, useEffect, useState } from "react";
+import React, {
+    ChangeEvent,
+    ChangeEventHandler,
+    FormEvent,
+    JSX,
+    useEffect,
+    useState,
+} from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FloatingLabel } from "react-bootstrap";
@@ -10,7 +17,9 @@ function CreateProduct({ category }: { category: Array<Category> }) {
     const { errors } = usePage<{ errors: Error }>().props;
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        router.post("/product", values as Record<string, any>);
+        router.post("/product", values as Record<string, any>, {
+            forceFormData: true,
+        });
     }
 
     const [values, setValues] = useState<ProductInput>({
@@ -18,14 +27,35 @@ function CreateProduct({ category }: { category: Array<Category> }) {
         category_id: 0,
         description: "",
         price: 0,
-        image_urls: "",
+        image_urls: null,
     });
+
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         const { id, value } = e.target;
         setValues((prevValues) => ({
             ...prevValues,
             [id]: value,
         }));
+    }
+
+    function handleSelectChange(e: ChangeEvent<HTMLSelectElement>) {
+        const { id, value } = e.target;
+
+        setValues((prevValues) => ({
+            ...prevValues,
+            [id]: typeof value === "string" && parseInt(value),
+        }));
+    }
+    function uploadImage(e: ChangeEvent<HTMLInputElement>) {
+        let files = e.target.files;
+        if (files !== null) {
+            let file = files[0];
+            console.log("file: ", file);
+            setValues((prevValues) => ({
+                ...prevValues,
+                image_urls: file,
+            }));
+        }
     }
 
     return (
@@ -44,16 +74,20 @@ function CreateProduct({ category }: { category: Array<Category> }) {
                 </Form.Group>
 
                 {/* Выбор категории */}
-                <Form.Group className="mb-3" controlId="name">
+                <Form.Group className="mb-3" controlId="category_id">
                     <Form.Label>Выберите категорию</Form.Label>
-                    <Form.Select>
+                    <Form.Select
+                        onChange={handleSelectChange}
+                        value={values.category_id}
+                    >
                         {category.map((item) => (
                             <>
-                                <option>{item.name}</option>
+                                <option key={item.id} value={item.id}>
+                                    {item.name}
+                                </option>
                             </>
                         ))}
                     </Form.Select>
-                    <p className="red">{errors.name}</p>
                 </Form.Group>
 
                 {/* Описание */}
@@ -88,17 +122,23 @@ function CreateProduct({ category }: { category: Array<Category> }) {
                 {/* Выберите изображение */}
                 <Form.Group className="mb-3" controlId="name">
                     <Form.Label>Выберите изображение</Form.Label>
-                    <Form.Control
+                    {/* <Form.Control
                         type="text"
                         placeholder="Введите название категории"
                         onChange={handleChange}
                         value={values.name}
+                    /> */}
+
+                    <Form.Control
+                        type="file"
+                        title="Выберите изображение"
+                        onChange={uploadImage}
                     />
-                    <p className="red">{errors.name}</p>
+                    <p className="red">{errors.image_urls}</p>
                 </Form.Group>
 
                 <Button variant="primary" type="submit">
-                    Создать категорию
+                    Создать товар
                 </Button>
             </Form>
         </>
