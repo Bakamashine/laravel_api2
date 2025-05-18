@@ -33,7 +33,8 @@ export interface CategoryOutput {
 export interface Product {
     id: number;
     name: string;
-    category_name: string;
+    // category_name: string;
+    category: Category
     description: string;
     price: number;
     image_urls: string;
@@ -50,4 +51,8 @@ export interface ProductInput {
 
 export interface ProductOutput extends Omit<CategoryOutput, "data"> {
     data: Product[];
+}
+
+export interface CategoryInput extends Omit<Category, "id"> {
+    id: number;
 }

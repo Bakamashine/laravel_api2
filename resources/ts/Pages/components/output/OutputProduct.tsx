@@ -31,11 +31,12 @@ function OutputProduct({ products }: { products: ProductOutput }) {
                         <tr key={item.id}>
                             <td>{item.id}</td>
                             <td>{item.name}</td>
-                            <td>{item.category_name}</td>
+                            <td>{item.category.name}</td>
                             <td>{item.description}</td>
                             <td>{item.price}</td>
                             <td>
                                 <img src={item.image_urls} alt="Фото" />
+                                <p>{item.image_urls}</p>
                             </td>
                             <td>
                                 <Link

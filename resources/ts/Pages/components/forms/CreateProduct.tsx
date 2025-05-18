@@ -10,10 +10,9 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FloatingLabel } from "react-bootstrap";
 import { router, usePage } from "@inertiajs/react";
-import { Category } from "../../interfaces";
-import { Product, ProductInput } from "../../interfaces";
+import { Product, ProductInput, Category, CategoryInput } from "../../interfaces";
 
-function CreateProduct({ category }: { category: Array<Category> }) {
+function CreateProduct({ category }: { category: Array<CategoryInput> }) {
     const { errors } = usePage<{ errors: Error }>().props;
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -82,7 +81,7 @@ function CreateProduct({ category }: { category: Array<Category> }) {
                     >
                         {category.map((item) => (
                             <>
-                                <option key={item.id} value={item.id}>
+                                <option key={item.id} value={item.id+1}>
                                     {item.name}
                                 </option>
                             </>
@@ -108,7 +107,7 @@ function CreateProduct({ category }: { category: Array<Category> }) {
                 <p className="red">{errors.description}</p>
 
                 {/* Выбор цены */}
-                <Form.Group className="mb-3" controlId="name">
+                <Form.Group className="mb-3" controlId="price">
                     <Form.Label>Введите цену</Form.Label>
                     <Form.Control
                         type="text"
@@ -120,7 +119,7 @@ function CreateProduct({ category }: { category: Array<Category> }) {
                 </Form.Group>
 
                 {/* Выберите изображение */}
-                <Form.Group className="mb-3" controlId="name">
+                <Form.Group className="mb-3" controlId="image_urls">
                     <Form.Label>Выберите изображение</Form.Label>
                     {/* <Form.Control
                         type="text"
