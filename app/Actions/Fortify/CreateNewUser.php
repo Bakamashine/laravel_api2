@@ -37,7 +37,7 @@ class CreateNewUser implements CreatesNewUsers
         //     'password' => $password_rules
         // ])->validate();
         
-        Validator::make($input, (new UserRequest())->rules());
+        Validator::make($input, (new UserRequest())->rules())->validated();
         
         return RegisterService::store($input);
 
