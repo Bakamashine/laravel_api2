@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CategoriesAPIController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -17,6 +18,11 @@ Route::get('/user', function (Request $request) {
 //             Route::post("/logout", LogoutController::class)->name("logout");
 //         }
 //     );
+
+Route::middleware('auth:sanctum')
+->group(function () {
+    Route::get("/categories", [CategoriesAPIController::class, 'show']);
+});
 
 Route::post("/auth", AuthController::class);
 Route::post("/logout", LogoutController::class);
