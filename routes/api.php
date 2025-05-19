@@ -22,6 +22,7 @@ Route::get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')
 ->group(function () {
     Route::get("/categories", [CategoriesAPIController::class, 'show']);
+    Route::get("/categories/{category}/products", [CategoriesAPIController::class, 'getWithProducts']);
 });
 
 Route::post("/auth", AuthController::class);
