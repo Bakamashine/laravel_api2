@@ -3,21 +3,14 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FloatingLabel } from "react-bootstrap";
 import { router, usePage } from "@inertiajs/react";
-import { Category } from "../../interfaces";
+import { Category } from "../../../../interfaces";
 
-function UpdateCategory({
-    category,
-    closeWindow,
-}: {
-    category: Category;
-    closeWindow: CallableFunction;
-}) {
+function EditCategory({ category }: { category: Category }) {
     const { errors } = usePage<{ errors: Error }>().props;
 
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
         router.put(`/category/${category.id}`, values as Record<string, any>);
-        closeWindow();
     }
 
     const [values, setValues] = useState<Category>({
@@ -70,4 +63,4 @@ function UpdateCategory({
     );
 }
 
-export default UpdateCategory;
+export default EditCategory;

@@ -1,8 +1,8 @@
 import React from "react";
 import Layout_Admin from "./layout_admin";
-import CreateProduct from "../components/forms/CreateProduct";
-import OutputProduct from "../components/output/OutputProduct";
-import { Category, CategoryInput, CategoryOutput, ProductOutput } from "../interfaces";
+import CreateProduct from "./components/forms/Products/CreateProduct";
+import OutputProduct from "./components/output/OutputProduct";
+import { CategoryInput, ProductOutput } from "../interfaces";
 
 function ProductPage({
     category,
@@ -11,8 +11,7 @@ function ProductPage({
     category: Array<CategoryInput>;
     products: ProductOutput;
 }) {
-    
-    console.log("products", products)
+    console.log("products", products);
     return (
         <Layout_Admin>
             <CreateProduct category={category} />

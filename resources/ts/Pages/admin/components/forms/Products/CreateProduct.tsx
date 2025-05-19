@@ -1,47 +1,25 @@
-import { Category, ProductInput, ProductUpdate } from "../../interfaces";
-import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FloatingLabel } from "react-bootstrap";
 import { router, usePage } from "@inertiajs/react";
 
-function UpdateProduct({
-    category,
-    product,
-    closeWindow,
-}: {
-    category: Array<Category>;
-    product: ProductUpdate;
-    closeWindow: CallableFunction;
-}) {
-    const { errors } = usePage<{ errors: Error }>().props;
+import { ProductInput, CategoryInput } from "../../../../interfaces";
 
+function CreateProduct({ category }: { category: Array<CategoryInput> }) {
+    const { errors } = usePage<{ errors: Error }>().props;
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
-
-        const formData = new FormData();
-        formData.append("name", values.name.toString());
-        formData.append("category_id", values.category_id.toString());
-        formData.append("description", values.description.toString());
-        formData.append("price", values.price.toString());
-        if (values.image_urls) {
-            formData.append("image_urls", values.image_urls);
-        }
-        
-        console.log('id: ', product.id)
-
-        router.put(`/product/${product.id}`, formData, {
+        router.post("/product", values as Record<string, any>, {
             forceFormData: true,
         });
-        
-        closeWindow()
     }
 
     const [values, setValues] = useState<ProductInput>({
-        name: product.name,
-        category_id: product.category_id,
-        description: product.description,
-        price: product.price,
+        name: "",
+        category_id: 1,
+        description: "",
+        price: 0,
         image_urls: null,
     });
 
@@ -61,7 +39,6 @@ function UpdateProduct({
             [id]: typeof value === "string" && parseInt(value),
         }));
     }
-
     function uploadImage(e: ChangeEvent<HTMLInputElement>) {
         let files = e.target.files;
         if (files !== null) {
@@ -76,12 +53,7 @@ function UpdateProduct({
 
     return (
         <>
-            <Form
-                className="m-3 bg-form"
-                method="put"
-                name="_method"
-                onSubmit={handleSubmit}
-            >
+            <Form className="m-3 bg-form" onSubmit={handleSubmit}>
                 {/* Название товара */}
                 <Form.Group className="mb-3" controlId="name">
                     <Form.Label>Название товара</Form.Label>
@@ -150,11 +122,11 @@ function UpdateProduct({
                 </Form.Group>
 
                 <Button variant="primary" type="submit">
-                    Обновить товар
+                    Создать товар
                 </Button>
             </Form>
         </>
     );
 }
 
-export default UpdateProduct;
+export default CreateProduct;

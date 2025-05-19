@@ -1,11 +1,10 @@
 import React, { ChangeEvent, FormEvent, JSX, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { FloatingLabel, Modal, Table } from "react-bootstrap";
-import Paginate from "../Paginate";
+import Paginate from "../../../components/Paginate";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
-import { CategoryOutput, Category } from "../../interfaces";
-import UpdateCategory from "../forms/UpdateCategory";
+import { CategoryOutput, Category } from "../../../interfaces";
 
 function OutputCategory({ category }: { category: CategoryOutput }) {
     const [show, setShow] = useState(false);
@@ -39,14 +38,18 @@ function OutputCategory({ category }: { category: CategoryOutput }) {
                                 </Link>
                             </td>
                             <td>
-                                <Button
+                                
+                                <Link className="btn btn-dark" href={route('category.edit', {
+                                    id: item.id
+                                })}>Редактировать</Link>
+                                {/* <Button
                                     onClick={() => {
                                         setShow(true);
                                         item && setPoint(item);
                                     }}
                                 >
                                     Редактировать
-                                </Button>
+                                </Button> */}
                             </td>
                         </tr>
                     ))}
@@ -55,15 +58,6 @@ function OutputCategory({ category }: { category: CategoryOutput }) {
             <div className="d-flex justify-content-center align-items-center">
                 <Paginate item={category} />
             </div>
-
-            <Modal show={show} fullscreen onHide={() => setShow(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Редактирование</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <UpdateCategory category={point as Category} closeWindow={() => setShow(false)}/>
-                </Modal.Body>
-            </Modal>
         </>
     );
 }

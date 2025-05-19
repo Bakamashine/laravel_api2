@@ -1,5 +1,5 @@
 import React, { JSX } from "react";
-import { CategoryOutput } from "../interfaces";
+import { CategoryOutput } from "../../interfaces";
 import { Pagination } from "react-bootstrap";
 import { router } from "@inertiajs/react";
 

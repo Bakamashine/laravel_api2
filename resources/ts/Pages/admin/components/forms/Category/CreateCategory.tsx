@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FloatingLabel } from "react-bootstrap";
 import { router, usePage } from "@inertiajs/react";
-import { Category } from "../../interfaces";
+import { Category } from "../../../../interfaces";
 
 function CreateCategory() {
     const { errors } = usePage<{ errors: Error }>().props;

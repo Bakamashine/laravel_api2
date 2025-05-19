@@ -1,14 +1,13 @@
 import React, { ChangeEvent, FormEvent, JSX, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { FloatingLabel, Modal, Table } from "react-bootstrap";
-import Paginate from "../Paginate";
+import Paginate from "../../../components/Paginate";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
-import { CategoryOutput, Category, ProductInput, ProductUpdate } from "../../interfaces";
-import UpdateCategory from "../forms/UpdateCategory";
-import { ProductOutput } from "../../interfaces";
-import { Product } from "../../interfaces";
-import UpdateProduct from "../forms/UpdateProduct";
+import { Category } from "../../../interfaces";
+import { ProductOutput, Product } from "../../../interfaces";
+
+
 
 function OutputProduct({ products, category }: { products: ProductOutput, category: Array<Category> }) {
     const [show, setShow] = useState(false);
@@ -52,14 +51,9 @@ function OutputProduct({ products, category }: { products: ProductOutput, catego
                                 </Link>
                             </td>
                             <td>
-                                <Button
-                                    onClick={() => {
-                                        setShow(true);
-                                        item && setPoint(item);
-                                    }}
-                                >
-                                    Редактировать
-                                </Button>
+                                <Link className="btn btn-dark" href={route("product.edit", {
+                                    id: item.id
+                                })}>Редактировать</Link>
                             </td>
                         </tr>
                     ))}
@@ -68,15 +62,6 @@ function OutputProduct({ products, category }: { products: ProductOutput, catego
             <div className="d-flex justify-content-center align-items-center">
                 <Paginate item={products} />
             </div>
-
-            <Modal show={show} fullscreen onHide={() => setShow(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Редактирование</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <UpdateProduct category={category} product={point} closeWindow={() => setShow(false)} />
-                </Modal.Body>
-            </Modal>
         </>
     );
 }

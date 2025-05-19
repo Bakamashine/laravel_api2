@@ -11,6 +11,11 @@ use Request;
 
 class CategoryController extends AdminController
 {
+    private string $redact_category;
+
+    public function __construct() {
+        $this->redact_category = $this->path_admin_comp_forms . "/Category/EditCategory";
+    }
 
     /**
      * Display a listing of the resource.
@@ -45,7 +50,7 @@ class CategoryController extends AdminController
      */
     public function show(Category $category)
     {
-        //
+        
     }
 
     /**
@@ -53,7 +58,7 @@ class CategoryController extends AdminController
      */
     public function edit(Category $category)
     {
-        //
+        return inertia($this->redact_category, ['category' => $category]);
     }
 
     /**
@@ -63,6 +68,7 @@ class CategoryController extends AdminController
     {
         $request->validated();
         $category->update($request->all());
+        return redirect()->route("category.index");
     }
 
     /**

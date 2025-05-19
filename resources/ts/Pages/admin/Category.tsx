@@ -1,8 +1,9 @@
 import React from 'react'
 import Layout_Admin from "./layout_admin";
 import { CategoryOutput } from "../interfaces";
-import CreateCategory from "../components/forms/CreateCategory";
-import OutputCategory from "../components/output/OutputCategory";
+import OutputCategory from './components/output/OutputCategory';
+import CreateCategory from './components/forms/Category/CreateCategory';
+
 
 function CategoryPage({ category }: { category: CategoryOutput }) {
     return (

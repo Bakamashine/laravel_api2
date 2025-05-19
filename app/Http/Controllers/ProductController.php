@@ -10,6 +10,13 @@ use App\Models\Product;
 
 class ProductController extends AdminController
 {
+    private string $redact_product;
+
+    public function __construct()
+    {
+        $this->redact_product = $this->path_admin_comp_forms . "/Products/EditProduct";
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -19,7 +26,6 @@ class ProductController extends AdminController
             $this->path_product,
             [
                 'category' => Category::all(),
-                // 'products' => LowService::getAllWithPaginate(Product::class)
                 'products' => Product::with('category')->paginate(5)
             ]
         );
@@ -55,7 +61,13 @@ class ProductController extends AdminController
      */
     public function edit(Product $product)
     {
-        //
+        return inertia(
+            $this->redact_product,
+            [
+                'category' => Category::all(),
+                'product' => $product
+            ]
+        );
     }
 
     /**
@@ -63,7 +75,7 @@ class ProductController extends AdminController
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        
+
         dd($request->all());
         // $request->validated();
         // ProductAction::update($request, $product);
