@@ -35,8 +35,9 @@ function OutputProduct({ products }: { products: ProductOutput }) {
                             <td>{item.description}</td>
                             <td>{item.price}</td>
                             <td>
-                                <img src={item.image_urls} alt="Фото" />
-                                <p>{item.image_urls}</p>
+                                <a target="_blank" rel="noopener noreferrer" href={item.image_urls} className="no_decor">
+                                    <img className="product_image_size" src={item.image_urls} alt={item.image_urls} />
+                                </a>
                             </td>
                             <td>
                                 <Link

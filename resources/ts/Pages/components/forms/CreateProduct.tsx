@@ -1,17 +1,14 @@
-import React, {
-    ChangeEvent,
-    ChangeEventHandler,
-    FormEvent,
-    JSX,
-    use,
-    useEffect,
-    useState,
-} from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FloatingLabel } from "react-bootstrap";
 import { router, usePage } from "@inertiajs/react";
-import { Product, ProductInput, Category, CategoryInput } from "../../interfaces";
+import {
+    Product,
+    ProductInput,
+    Category,
+    CategoryInput,
+} from "../../interfaces";
 
 function CreateProduct({ category }: { category: Array<CategoryInput> }) {
     const { errors } = usePage<{ errors: Error }>().props;
@@ -57,7 +54,7 @@ function CreateProduct({ category }: { category: Array<CategoryInput> }) {
             }));
         }
     }
-    
+
     return (
         <>
             <Form className="m-3 bg-form" onSubmit={handleSubmit}>
@@ -81,11 +78,9 @@ function CreateProduct({ category }: { category: Array<CategoryInput> }) {
                         value={values.category_id}
                     >
                         {category.map((item) => (
-                            <>
-                                <option key={item.id} value={item.id}>
-                                    {item.name}
-                                </option>
-                            </>
+                            <option key={item.id} value={item.id}>
+                                {item.name}
+                            </option>
                         ))}
                     </Form.Select>
                 </Form.Group>
@@ -122,13 +117,6 @@ function CreateProduct({ category }: { category: Array<CategoryInput> }) {
                 {/* Выберите изображение */}
                 <Form.Group className="mb-3" controlId="image_urls">
                     <Form.Label>Выберите изображение</Form.Label>
-                    {/* <Form.Control
-                        type="text"
-                        placeholder="Введите название категории"
-                        onChange={handleChange}
-                        value={values.name}
-                    /> */}
-
                     <Form.Control
                         type="file"
                         title="Выберите изображение"

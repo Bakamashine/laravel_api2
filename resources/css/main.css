@@ -104,3 +104,12 @@ aside.sidebar svg:focus {
     /* top: 2em; */
     right: 2em;
 }
+
+.product_image_size {
+    width: 100px;
+    height: 100px;
+}
+
+.no_decor {
+    text-decoration: none;
+}

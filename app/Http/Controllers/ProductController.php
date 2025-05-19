@@ -41,7 +41,7 @@ class ProductController extends AdminController
     public function store(StoreProductRequest $request)
     {
         $request->validated();
-        ProductAction::create($request,);
+        ProductAction::create($request);
     }
 
     /**
