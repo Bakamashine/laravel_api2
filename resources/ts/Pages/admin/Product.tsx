@@ -2,13 +2,13 @@ import React from "react";
 import Layout_Admin from "./layout_admin";
 import CreateProduct from "../components/forms/CreateProduct";
 import OutputProduct from "../components/output/OutputProduct";
-import { Category, CategoryOutput, ProductOutput } from "../interfaces";
+import { Category, CategoryInput, CategoryOutput, ProductOutput } from "../interfaces";
 
 function ProductPage({
     category,
     products,
 }: {
-    category: Array<Category>;
+    category: Array<CategoryInput>;
     products: ProductOutput;
 }) {
     
