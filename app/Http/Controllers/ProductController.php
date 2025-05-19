@@ -63,8 +63,10 @@ class ProductController extends AdminController
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $request->validated();
-        ProductAction::update($request, $product);
+        
+        dd($request->all());
+        // $request->validated();
+        // ProductAction::update($request, $product);
     }
 
     /**

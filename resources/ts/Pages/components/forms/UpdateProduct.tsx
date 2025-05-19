@@ -20,21 +20,21 @@ function UpdateProduct({
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append("name", values.name);
-        formData.append("category_id", values.category_id);
-        formData.append("description", values.description);
-        formData.append("price", values.price);
+        formData.append("name", values.name.toString());
+        formData.append("category_id", values.category_id.toString());
+        formData.append("description", values.description.toString());
+        formData.append("price", values.price.toString());
         if (values.image_urls) {
             formData.append("image_urls", values.image_urls);
         }
         
-        router.put(`/product/${product.id}`, formData, {
-            forceFormData: true
-        });
+        console.log('id: ', product.id)
 
-        // router.put(`/product/${product.id}`, values as Record<string, any>, {
-        //     forceFormData: true,
-        // });
+        router.put(`/product/${product.id}`, formData, {
+            forceFormData: true,
+        });
+        
+        closeWindow()
     }
 
     const [values, setValues] = useState<ProductInput>({
@@ -42,7 +42,7 @@ function UpdateProduct({
         category_id: product.category_id,
         description: product.description,
         price: product.price,
-        image_urls: null
+        image_urls: null,
     });
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {

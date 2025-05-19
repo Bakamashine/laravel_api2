@@ -74,11 +74,6 @@ function OutputProduct({ products, category }: { products: ProductOutput, catego
                     <Modal.Title>Редактирование</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {/* <UpdateCategory
-                        category={point as }
-                        closeWindow={() => setShow(false)}
-                    /> */}
-
                     <UpdateProduct category={category} product={point} closeWindow={() => setShow(false)} />
                 </Modal.Body>
             </Modal>

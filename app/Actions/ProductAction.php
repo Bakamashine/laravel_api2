@@ -2,6 +2,8 @@
 
 namespace App\Actions;
 
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use Exception;
 use Illuminate\Http\Request;
@@ -32,7 +34,7 @@ class ProductAction
      * @param Request $request
      * @return void
      */
-    public static function create(Request $request)
+    public static function create(StoreProductRequest $request)
     {
         /**
          * @var Category
@@ -52,7 +54,7 @@ class ProductAction
      * @param Request $request
      * @return void
      */
-    public static function update(Request $request, Product $product)
+    public static function update(UpdateProductRequest $request, Product $product)
     {
         $product->update([
             'name' => $request->name,

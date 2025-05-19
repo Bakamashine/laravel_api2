@@ -17,6 +17,7 @@ function UpdateCategory({
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
         router.put(`/category/${category.id}`, values as Record<string, any>);
+        closeWindow();
     }
 
     const [values, setValues] = useState<Category>({
@@ -31,11 +32,6 @@ function UpdateCategory({
             [id]: value,
         }));
     }
-    
-    function submit() {
-        closeWindow();
-    }
-
     return (
         <>
             <Form className="m-3 bg-form" onSubmit={handleSubmit}>
@@ -66,7 +62,7 @@ function UpdateCategory({
                     />
                 </FloatingLabel>
                 <p className="red">{errors.description}</p>
-                <Button variant="primary" type="submit" onClick={submit}>
+                <Button variant="primary" type="submit">
                     Обновить категорию
                 </Button>
             </Form>
