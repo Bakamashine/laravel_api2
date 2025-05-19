@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CategoriesAPIController;
+use App\Http\Controllers\Api\ProductAPIController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -20,10 +21,21 @@ Route::get('/user', function (Request $request) {
 //     );
 
 Route::middleware('auth:sanctum')
-->group(function () {
-    Route::get("/categories", [CategoriesAPIController::class, 'show']);
-    Route::get("/categories/{category}/products", [CategoriesAPIController::class, 'getWithProducts']);
-});
+    ->group(function () {
+
+        Route::controller(CategoriesAPIController::class)
+            ->group(
+                function () {
+                    Route::get("/categories", 'show');
+                    Route::get("/categories/{category}/products", 'getWithProducts');
+                }
+            );
+
+        Route::controller(ProductAPIController::class)
+            ->group(function () {
+                Route::get("/products/{product}", 'show');
+            });
+    });
 
 Route::post("/auth", AuthController::class);
 Route::post("/logout", LogoutController::class);
