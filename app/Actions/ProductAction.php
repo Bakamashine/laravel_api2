@@ -19,13 +19,13 @@ class ProductAction
      * @throws \Exception
      * @return string
      */
-    private static function uploadImage(Request $request)
+    private static function uploadImage(Request $request): string|null
     {
         if ($request->hasFile('image_urls')) {
             $file = $request->file('image_urls')->store('products', 'public');
             return Storage::url($file);
         } else
-            throw new Exception("Image not found");
+            return null;
     }
     
 
@@ -56,12 +56,18 @@ class ProductAction
      */
     public static function update(UpdateProductRequest $request, Product $product)
     {
-        $product->update([
+        $data = [
             'name' => $request->name,
             'description' => $request->description,
             'category_id' => $request->category_id,
             'price' => $request->price,
-            'image_urls' => static::uploadImage($request)
-        ]);
+        ];
+
+        $image = static::uploadImage($request);
+        if (!is_null($image)){
+            $data['image_urls'] = $image;
+        }
+        
+        $product->update($data);
     }
 }

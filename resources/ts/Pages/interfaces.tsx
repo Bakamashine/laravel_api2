@@ -57,6 +57,7 @@ export interface CategoryInput extends Omit<Category, "id"> {
     id: number;
 }
 
-export interface ProductUpdate extends Omit <ProductInput, "id"> {
+export interface ProductUpdate extends Omit <ProductInput, "id"|"image_urls"> {
     id: number;
+    image_urls?: File
 }

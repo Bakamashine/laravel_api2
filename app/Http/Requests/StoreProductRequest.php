@@ -26,7 +26,7 @@ class StoreProductRequest extends FormRequest
             (new UpdateCategoryRequest())->rules(),
             [
                 'price' => ['required', 'integer'],
-                'image_urls' => ['image', 'mimetypes:image/jpeg,image/png'],
+                'image_urls' => ['required', 'image', 'mimetypes:image/jpeg,image/png'],
             ]
         );
     }

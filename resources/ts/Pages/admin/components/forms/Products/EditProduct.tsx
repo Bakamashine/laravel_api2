@@ -4,7 +4,11 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FloatingLabel } from "react-bootstrap";
 import { router, usePage } from "@inertiajs/react";
+import { route } from "ziggy-js";
 
+// FIXME: С картинкой не получается отправить из-за метода PUT. 
+// Обычный запрос в виде JSON строки работает только с строками 
+// Но стоит загрузить файл, то в Request ничего не попадает.
 function EditProduct({
     category,
     product,
@@ -17,29 +21,20 @@ function EditProduct({
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        const formData = new FormData();
-        formData.append("name", values.name.toString());
-        formData.append("category_id", values.category_id.toString());
-        formData.append("description", values.description.toString());
-        formData.append("price", values.price.toString());
-        if (values.image_urls) {
-            formData.append("image_urls", values.image_urls);
+        if (values.image_urls === null || values.image_urls === undefined) {
+            delete values.image_urls;
         }
-        
-        console.log('id: ', product.id)
 
-        router.put(`/product/${product.id}`, formData, {
-            forceFormData: true,
-        });
-        
+        router.put(`/product/${product.id}`, values as Record<string, any>);
     }
 
-    const [values, setValues] = useState<ProductInput>({
+    const [values, setValues] = useState<ProductUpdate>({
+        id: product.id,
         name: product.name,
         category_id: product.category_id,
         description: product.description,
         price: product.price,
-        image_urls: null,
+        image_urls: undefined,
     });
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -73,12 +68,7 @@ function EditProduct({
 
     return (
         <>
-            <Form
-                className="m-3 bg-form"
-                method="put"
-                name="_method"
-                onSubmit={handleSubmit}
-            >
+            <Form className="m-3 bg-form" method="post" onSubmit={handleSubmit}>
                 {/* Название товара */}
                 <Form.Group className="mb-3" controlId="name">
                     <Form.Label>Название товара</Form.Label>
@@ -136,7 +126,7 @@ function EditProduct({
                 </Form.Group>
 
                 {/* Выберите изображение */}
-                <Form.Group className="mb-3" controlId="image_urls">
+                {/* <Form.Group className="mb-3" controlId="image_urls">
                     <Form.Label>Выберите изображение</Form.Label>
                     <Form.Control
                         type="file"
@@ -144,7 +134,7 @@ function EditProduct({
                         onChange={uploadImage}
                     />
                     <p className="red">{errors.image_urls}</p>
-                </Form.Group>
+                </Form.Group> */}
 
                 <Button variant="primary" type="submit">
                     Обновить товар

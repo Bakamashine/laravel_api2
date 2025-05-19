@@ -14,16 +14,19 @@ class UpdateProductRequest extends StoreProductRequest
     //     return false;
     // }
 
-    // /**
-    //  * Get the validation rules that apply to the request.
-    //  *
-    //  * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-    //  */
-    // public function rules(): array
-    // {
-        
-    //     return [
-    //         //
-    //     ];
-    // }
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        return array_merge(
+            (new UpdateCategoryRequest())->rules(),
+            [
+                'price' => ['required', 'integer'],
+                'image_urls' => ['sometimes', 'image', 'mimetypes:image/jpeg,image/png'],
+            ]
+        );
+    }
 }

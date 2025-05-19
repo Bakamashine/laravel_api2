@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class ProductController extends AdminController
 {
@@ -75,10 +76,8 @@ class ProductController extends AdminController
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-
-        dd($request->all());
-        // $request->validated();
-        // ProductAction::update($request, $product);
+        ProductAction::update($request, $product);
+        return redirect()->route('product.index');
     }
 
     /**
