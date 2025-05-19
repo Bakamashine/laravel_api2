@@ -25,6 +25,7 @@ class ProductAction
         } else
             throw new Exception("Image not found");
     }
+    
 
     /**
      * Создание нового продукта
@@ -56,6 +57,7 @@ class ProductAction
         $product->update([
             'name' => $request->name,
             'description' => $request->description,
+            'category_id' => $request->category_id,
             'price' => $request->price,
             'image_urls' => static::uploadImage($request)
         ]);

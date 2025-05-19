@@ -1,8 +1,4 @@
-import {
-    Category,
-    ProductInput,
-    ProductUpdate,
-} from "../../interfaces";
+import { Category, ProductInput, ProductUpdate } from "../../interfaces";
 import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -22,9 +18,23 @@ function UpdateProduct({
 
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        router.put(`/product/${product.id}`, values as Record<string, any>, {
-            forceFormData: true,
+
+        const formData = new FormData();
+        formData.append("name", values.name);
+        formData.append("category_id", values.category_id);
+        formData.append("description", values.description);
+        formData.append("price", values.price);
+        if (values.image_urls) {
+            formData.append("image_urls", values.image_urls);
+        }
+        
+        router.put(`/product/${product.id}`, formData, {
+            forceFormData: true
         });
+
+        // router.put(`/product/${product.id}`, values as Record<string, any>, {
+        //     forceFormData: true,
+        // });
     }
 
     const [values, setValues] = useState<ProductInput>({
@@ -32,7 +42,7 @@ function UpdateProduct({
         category_id: product.category_id,
         description: product.description,
         price: product.price,
-        image_urls: product.image_urls,
+        image_urls: null
     });
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -63,14 +73,15 @@ function UpdateProduct({
             }));
         }
     }
-    
-    useEffect(() => {
-        console.log(values);
-    }, [])
 
     return (
         <>
-            <Form className="m-3 bg-form" onSubmit={handleSubmit}>
+            <Form
+                className="m-3 bg-form"
+                method="put"
+                name="_method"
+                onSubmit={handleSubmit}
+            >
                 {/* Название товара */}
                 <Form.Group className="mb-3" controlId="name">
                     <Form.Label>Название товара</Form.Label>
