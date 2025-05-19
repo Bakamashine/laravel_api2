@@ -56,3 +56,7 @@ export interface ProductOutput extends Omit<CategoryOutput, "data"> {
 export interface CategoryInput extends Omit<Category, "id"> {
     id: number;
 }
+
+export interface ProductUpdate extends Omit <ProductInput, "id"> {
+    id: number;
+}

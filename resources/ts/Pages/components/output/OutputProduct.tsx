@@ -4,12 +4,13 @@ import { FloatingLabel, Modal, Table } from "react-bootstrap";
 import Paginate from "../Paginate";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
-import { CategoryOutput, Category } from "../../interfaces";
+import { CategoryOutput, Category, ProductInput, ProductUpdate } from "../../interfaces";
 import UpdateCategory from "../forms/UpdateCategory";
 import { ProductOutput } from "../../interfaces";
 import { Product } from "../../interfaces";
+import UpdateProduct from "../forms/UpdateProduct";
 
-function OutputProduct({ products }: { products: ProductOutput }) {
+function OutputProduct({ products, category }: { products: ProductOutput, category: Array<Category> }) {
     const [show, setShow] = useState(false);
     const [point, setPoint] = useState<Product>();
 
@@ -78,7 +79,7 @@ function OutputProduct({ products }: { products: ProductOutput }) {
                         closeWindow={() => setShow(false)}
                     /> */}
 
-                    <p>В разработке</p>
+                    <UpdateProduct category={category} product={point} closeWindow={() => setShow(false)} />
                 </Modal.Body>
             </Modal>
         </>

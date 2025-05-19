@@ -16,7 +16,7 @@ function ProductPage({
     return (
         <Layout_Admin>
             <CreateProduct category={category} />
-            <OutputProduct products={products} />
+            <OutputProduct products={products} category={category} />
 
             {/* <CreateCategory />
             <OutputCategory category={category} /> */}

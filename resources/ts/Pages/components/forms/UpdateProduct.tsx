@@ -1,28 +1,38 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import {
+    Category,
+    ProductInput,
+    ProductUpdate,
+} from "../../interfaces";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FloatingLabel } from "react-bootstrap";
 import { router, usePage } from "@inertiajs/react";
-import {
-    ProductInput,
-    CategoryInput,
-} from "../../interfaces";
 
-function CreateProduct({ category }: { category: Array<CategoryInput> }) {
+function UpdateProduct({
+    category,
+    product,
+    closeWindow,
+}: {
+    category: Array<Category>;
+    product: ProductUpdate;
+    closeWindow: CallableFunction;
+}) {
     const { errors } = usePage<{ errors: Error }>().props;
+
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        router.post("/product", values as Record<string, any>, {
+        router.put(`/product/${product.id}`, values as Record<string, any>, {
             forceFormData: true,
         });
     }
 
     const [values, setValues] = useState<ProductInput>({
-        name: "",
-        category_id: 1,
-        description: "",
-        price: 0,
-        image_urls: null,
+        name: product.name,
+        category_id: product.category_id,
+        description: product.description,
+        price: product.price,
+        image_urls: product.image_urls,
     });
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -41,6 +51,7 @@ function CreateProduct({ category }: { category: Array<CategoryInput> }) {
             [id]: typeof value === "string" && parseInt(value),
         }));
     }
+
     function uploadImage(e: ChangeEvent<HTMLInputElement>) {
         let files = e.target.files;
         if (files !== null) {
@@ -52,6 +63,10 @@ function CreateProduct({ category }: { category: Array<CategoryInput> }) {
             }));
         }
     }
+    
+    useEffect(() => {
+        console.log(values);
+    }, [])
 
     return (
         <>
@@ -124,11 +139,11 @@ function CreateProduct({ category }: { category: Array<CategoryInput> }) {
                 </Form.Group>
 
                 <Button variant="primary" type="submit">
-                    Создать товар
+                    Обновить товар
                 </Button>
             </Form>
         </>
     );
 }
 
-export default CreateProduct;
+export default UpdateProduct;
