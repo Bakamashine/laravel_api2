@@ -6,8 +6,7 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use App\Services\CategoryService;
-use App\Services\LowService;
-use Request;
+use Illuminate\Http\Request;
 
 class CategoryController extends AdminController
 {

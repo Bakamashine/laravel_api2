@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import { FloatingLabel } from "react-bootstrap";
 import { router, usePage } from "@inertiajs/react";
 import { Category } from "../../../../interfaces";
+import { route } from "ziggy-js";
 
 function EditCategory({ category }: { category: Category }) {
     const { errors } = usePage<{ errors: Error }>().props;

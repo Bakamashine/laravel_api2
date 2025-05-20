@@ -40,16 +40,8 @@ function OutputCategory({ category }: { category: CategoryOutput }) {
                             <td>
                                 
                                 <Link className="btn btn-dark" href={route('category.edit', {
-                                    id: item.id
+                                    id: item.id,
                                 })}>Редактировать</Link>
-                                {/* <Button
-                                    onClick={() => {
-                                        setShow(true);
-                                        item && setPoint(item);
-                                    }}
-                                >
-                                    Редактировать
-                                </Button> */}
                             </td>
                         </tr>
                     ))}

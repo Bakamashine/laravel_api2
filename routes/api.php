@@ -12,14 +12,6 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-// Route::controller(AuthController::class)
-//     ->group(
-//         function () {
-//             Route::post("/auth", '__invoke');
-//             Route::post("/logout", LogoutController::class)->name("logout");
-//         }
-//     );
-
 Route::middleware('auth:sanctum')
     ->group(function () {
 
@@ -35,7 +27,9 @@ Route::middleware('auth:sanctum')
             ->group(function () {
                 Route::get("/products/{product}", 'show');
             });
+            
     });
+
 
 Route::post("/auth", AuthController::class);
 Route::post("/logout", LogoutController::class);
