@@ -17,8 +17,8 @@ return new class extends Migration {
                 ->nullable()
                 ->constrained("categories")
                 ->cascadeOnDelete();
-            $table->longText("description");
-            $table->integer("price");
+            $table->longText("description")->nullable();
+            $table->string("price");
             $table->string("image_urls");
             $table->string("default_img")->nullable();
             $table->timestamps();

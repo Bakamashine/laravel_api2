@@ -22,12 +22,46 @@ class StoreProductRequest extends FormRequest
     public function rules(): array
     {
 
-        return array_merge(
-            (new UpdateCategoryRequest())->rules(),
-            [
-                'price' => ['required', 'integer'],
-                'image_urls' => ['required', 'image', 'mimetypes:image/jpeg,image/png'],
-            ]
-        );
+        // return array_merge(
+        //     (new UpdateCategoryRequest())->rules(),
+        //     [
+        //         'price' => [
+        //             'required', 
+        //             'integer'
+        //         ],
+        //         'image_urls' => [
+        //             'required', 
+        //             'image', 
+        //             'mimetypes:image/jpeg,image/png'
+        //         ],
+        //     ]
+        // );
+
+        return [
+            'name' => [
+                'required',
+                'string',
+                'max:20',
+                'regex:/^[a-яё]+(?:[ -][a-яё]+)*$/i'
+            ],
+            'description' => [
+                'sometimes',
+                'string',
+                'max:50',
+                'regex:/^[a-яё]+(?:[ -][a-яё]+)*$/i'
+            ],
+            'price' => [
+                'required',
+                'integer',
+                'regex:/^\d+\.\d{2}$/|gt:10'
+            ],
+            'image_urls' => [
+                'required',
+                'image',
+                'min:1',
+                'max:5',
+                'mimetypes:image/jpeg,image/png'
+            ],
+        ];
     }
 }

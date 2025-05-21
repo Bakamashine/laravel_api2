@@ -7,7 +7,17 @@ use App\Models\Category;
 class CategoryService {
 
     public static function create(array $values): Category {
-        return Category::create($values);
+        return Category::create([
+            "name" => $values['name'],
+            'description' => $values['description'] | null
+        ]);
+    }
+    
+    public static function update(array $values, Category $category) {
+        $category->update([
+            "name" => $values['name'],
+            'description' => $values['description'] | null
+        ]);
     }
     
     public static function getAll() {

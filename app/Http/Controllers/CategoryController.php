@@ -65,8 +65,10 @@ class CategoryController extends AdminController
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $request->validated();
-        $category->update($request->all());
+        // $request->validated();
+        // $category->update($request->all());
+        
+        CategoryService::update($request->all(), $category);
         return redirect()->route("category.index");
     }
 
