@@ -40,15 +40,20 @@ function CreateProduct({ category }: { category: Array<CategoryInput> }) {
         }));
     }
     function uploadImage(e: ChangeEvent<HTMLInputElement>) {
+        // let files = e.target.files;
+        // if (files !== null) {
+        //     let file = files[0];
+        //     console.log("file: ", file);
+        //     setValues((prevValues) => ({
+        //         ...prevValues,
+        //         image_urls: file,
+        //     }));
+        // }
+        
         let files = e.target.files;
         if (files !== null) {
-            let file = files[0];
-            console.log("file: ", file);
-            setValues((prevValues) => ({
-                ...prevValues,
-                image_urls: file,
-            }));
-        }
+            
+        } else console.error("Изображений нет")
     }
 
     return (
@@ -117,6 +122,7 @@ function CreateProduct({ category }: { category: Array<CategoryInput> }) {
                         type="file"
                         title="Выберите изображение"
                         onChange={uploadImage}
+                        multiple
                     />
                     <p className="red">{errors.image_urls}</p>
                 </Form.Group>

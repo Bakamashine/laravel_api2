@@ -1,3 +1,8 @@
+export interface Image {
+    id?: number,
+    urls_image: string
+}
+
 /**
  * Поля Категории
  */
@@ -37,7 +42,7 @@ export interface Product {
     category: Category
     description: string;
     price: number;
-    image_urls: string;
+    image_urls: Image[]
     default_img?: string;
 }
 
