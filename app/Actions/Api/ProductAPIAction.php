@@ -4,8 +4,10 @@ namespace App\Actions\Api;
 
 use App\Models\Product;
 
-class ProductAPIAction {
-    public static function create_webhook(int $id_product, string $status) {
+class ProductAPIAction
+{
+    public static function create_webhook(int $id_product, string $status)
+    {
         /**
          * @var Product
          */
@@ -13,7 +15,8 @@ class ProductAPIAction {
         $product->purchase()->create([
             'status' => $status
         ]);
-        
-        return response(status:204);
+
+        auth('sanctum')->user()->currentAccessToken()->delete();
+        return response(status: 204);
     }
 }

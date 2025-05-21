@@ -26,7 +26,6 @@ class ProductAPIController extends Controller
     public function webhook(Request $request) {
         $order_id = $request->id;
         $status = intval($request->status) ? "success" : "failed";
-        auth('sanctum')->user()->currentAccessToken()->delete;
         return ProductAPIAction::create_webhook($order_id, $status);
     }
 }

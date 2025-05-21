@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CategoriesAPIController;
 use App\Http\Controllers\Api\ProductAPIController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -30,6 +31,7 @@ Route::middleware('auth:sanctum')
                 Route::post('/payment-webhook', 'webhook')->middleware('abilities:temp');
             });
 
+        Route::get("/orders", OrderController::class);
     });
 
 
