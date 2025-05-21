@@ -9,14 +9,14 @@ class CategoryService {
     public static function create(array $values): Category {
         return Category::create([
             "name" => $values['name'],
-            'description' => $values['description'] | null
+            'description' => $values['description']
         ]);
     }
     
     public static function update(array $values, Category $category) {
         $category->update([
             "name" => $values['name'],
-            'description' => $values['description'] | null
+            'description' => $values['description']
         ]);
     }
     

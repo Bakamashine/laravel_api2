@@ -59,13 +59,6 @@ class ProductAction
             'price' => $request->price,
         ]);
         
-        // for ($i = 0; $i < $request->image; $i++) 
-        // {
-        //     $product->image()->create([
-        //         "image_urls" => static::uploadImage($request->image->image_urls)
-        //     ]);
-        // }
-        
         $imageUrls = static::uploadImage($request);
         foreach ($imageUrls as $url) {
             $product->image()->create(['image_urls' => $url]);

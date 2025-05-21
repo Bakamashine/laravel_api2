@@ -21,9 +21,9 @@ function EditProduct({
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        if (values.image_urls === null || values.image_urls === undefined) {
-            delete values.image_urls;
-        }
+        values.image === undefined && delete values.image;
+        
+        console.log("values: ", values);
 
         router.put(`/product/${product.id}`, values as Record<string, any>);
     }
@@ -32,9 +32,9 @@ function EditProduct({
         id: product.id,
         name: product.name,
         category_id: product.category_id,
-        description: product.description,
+        description: product.description === null ? "" : product.description,
         price: product.price,
-        image_urls: undefined,
+        image: undefined  
     });
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -65,10 +65,11 @@ function EditProduct({
             }));
         }
     }
-
+    
     return (
         <>
             <Form className="m-3 bg-form" method="post" onSubmit={handleSubmit}>
+                <input type="hidden" name="_method" value='put' />
                 {/* Название товара */}
                 <Form.Group className="mb-3" controlId="name">
                     <Form.Label>Название товара</Form.Label>

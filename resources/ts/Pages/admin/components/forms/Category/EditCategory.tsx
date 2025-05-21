@@ -11,6 +11,7 @@ function EditCategory({ category }: { category: Category }) {
 
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
+        console.log(values);
         router.put(`/category/${category.id}`, values as Record<string, any>);
     }
 
