@@ -1,6 +1,18 @@
-export interface Image {
-    id?: number,
-    urls_image: string
+// export interface Image {
+//     id?: number,
+//     urls_image?: string
+// }
+
+// interface ImageInterface {
+//     product_id: number,
+//     image_urls: string
+// }
+// type Image = FileList<ImageInterface>[];
+
+interface Image {
+    id: number;
+    product_id: number;
+    image_urls: string;
 }
 
 /**
@@ -39,10 +51,10 @@ export interface Product {
     id: number;
     name: string;
     // category_name: string;
-    category: Category
+    category: Category;
     description: string;
     price: number;
-    image_urls: Image[]
+    image: Image[];
     default_img?: string;
 }
 
@@ -51,7 +63,7 @@ export interface ProductInput {
     category_id: number;
     description: string;
     price: number;
-    image_urls: File|null;
+    image: FileList[] | null;
 }
 
 export interface ProductOutput extends Omit<CategoryOutput, "data"> {
@@ -62,7 +74,7 @@ export interface CategoryInput extends Omit<Category, "id"> {
     id: number;
 }
 
-export interface ProductUpdate extends Omit <ProductInput, "id"|"image_urls"> {
+export interface ProductUpdate extends Omit<ProductInput, "id" | "image"> {
     id: number;
-    image_urls?: File
+    image?: Image[];
 }

@@ -27,7 +27,9 @@ class ProductController extends AdminController
             $this->path_product,
             [
                 'category' => Category::all(),
-                'products' => Product::with('category')->paginate(5)
+                'products' => Product::with('category')
+                    ->with("image")
+                    ->paginate(5)
             ]
         );
     }
@@ -45,7 +47,6 @@ class ProductController extends AdminController
      */
     public function store(StoreProductRequest $request)
     {
-        $request->validated();
         ProductAction::create($request);
     }
 

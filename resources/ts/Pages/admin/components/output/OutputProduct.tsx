@@ -10,9 +10,6 @@ import { ProductOutput, Product } from "../../../interfaces";
 
 
 function OutputProduct({ products, category }: { products: ProductOutput, category: Array<Category> }) {
-    const [show, setShow] = useState(false);
-    const [point, setPoint] = useState<Product>();
-
     return (
         <>
             <Table striped bordered hover>
@@ -35,9 +32,11 @@ function OutputProduct({ products, category }: { products: ProductOutput, catego
                             <td>{item.description}</td>
                             <td>{item.price}</td>
                             <td>
-                                <a target="_blank" rel="noopener noreferrer" href={item.image_urls} className="no_decor">
-                                    <img className="product_image_size" src={item.image_urls} alt={item.image_urls} />
-                                </a>
+                                {item.image.map((item) => (
+                                    <a key={item.id} target="_blank" rel="noopener noreferrer" href={item.image_urls} className="no_decor">
+                                        <img className="product_image_size" src={item.image_urls} />
+                                    </a>
+                                ))}
                             </td>
                             <td>
                                 <Link

@@ -45,7 +45,7 @@ class StoreProductRequest extends FormRequest
                 'regex:/^[a-яё]+(?:[ -][a-яё]+)*$/i'
             ],
             'description' => [
-                'sometimes',
+                'nullable',
                 'string',
                 'max:50',
                 'regex:/^[a-яё]+(?:[ -][a-яё]+)*$/i'
@@ -53,15 +53,27 @@ class StoreProductRequest extends FormRequest
             'price' => [
                 'required',
                 'integer',
-                'regex:/^\d+\.\d{2}$/|gt:10'
+                // 'regex:/^\d+\.\d{2}$/'
             ],
+            // 'image_urls' => [
+            //     'required',
+            //     'image',
+            //     'min:1',
+            //     'max:5',
+            //     'mimetypes:image/jpeg,image/png,image/jpg'
+            // ],
+            
             'image_urls' => [
-                'required',
-                'image',
+                "required",
+                'array',
                 'min:1',
                 'max:5',
-                'mimetypes:image/jpeg,image/png'
             ],
+            'image_urls.*' => [
+                'image',
+                'mimetypes:image/jpeg,image/png,image/jpg'
+            ]
+
         ];
     }
 }

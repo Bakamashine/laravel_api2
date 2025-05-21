@@ -7,7 +7,9 @@ import { router, usePage } from "@inertiajs/react";
 import { ProductInput, CategoryInput } from "../../../../interfaces";
 
 function CreateProduct({ category }: { category: Array<CategoryInput> }) {
+
     const { errors } = usePage<{ errors: Error }>().props;
+
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
         router.post("/product", values as Record<string, any>, {
@@ -20,7 +22,7 @@ function CreateProduct({ category }: { category: Array<CategoryInput> }) {
         category_id: 1,
         description: "",
         price: 0,
-        image_urls: null,
+        image: null
     });
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -52,7 +54,10 @@ function CreateProduct({ category }: { category: Array<CategoryInput> }) {
         
         let files = e.target.files;
         if (files !== null) {
-            
+            setValues((prevValues) => ({
+                ...prevValues,
+                image_urls: files
+            }));
         } else console.error("Изображений нет")
     }
 

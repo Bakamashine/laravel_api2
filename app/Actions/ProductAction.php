@@ -19,13 +19,22 @@ class ProductAction
      * @throws \Exception
      * @return string
      */
-    private static function uploadImage(Request $request): string|null
+    private static function uploadImage(Request $request): array
     {
+        $urls = [];
+        // if ($request->hasFile('image_urls')) {
+        //     $file = $request->file('image_urls')->store('products', 'public');
+        //     return Storage::url($file);
+        // } else
+        //     return null;
+        
         if ($request->hasFile('image_urls')) {
-            $file = $request->file('image_urls')->store('products', 'public');
-            return Storage::url($file);
-        } else
-            return null;
+            foreach ($request->file('image_urls') as $file) {
+                $urls[] = Storage::url($file->store('products', 'public'));
+            }
+        }
+        
+        return $urls;
     }
     
 
@@ -41,12 +50,26 @@ class ProductAction
          */
         $category = Category::find($request->category_id);
 
-        $category->products()->create([
+        /**
+         * @var Product
+         */
+        $product = $category->products()->create([
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
-            'image_urls' => static::uploadImage($request)
         ]);
+        
+        // for ($i = 0; $i < $request->image; $i++) 
+        // {
+        //     $product->image()->create([
+        //         "image_urls" => static::uploadImage($request->image->image_urls)
+        //     ]);
+        // }
+        
+        $imageUrls = static::uploadImage($request);
+        foreach ($imageUrls as $url) {
+            $product->image()->create(['image_urls' => $url]);
+        }
     }
 
     /**
