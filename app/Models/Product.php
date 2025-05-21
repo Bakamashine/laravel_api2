@@ -13,8 +13,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $id
  * @property string $name
  * @property int|null $category_id
- * @property string|null $description
- * @property string $price
+ * @property string $description
+ * @property int $price
+ * @property string $image_urls
  * @property string|null $default_img
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -30,6 +31,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereDefaultImg($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereImageUrls($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereUpdatedAt($value)
@@ -39,8 +41,8 @@ class Product extends Model
 {
     /** @use HasFactory<\Database\Factories\ProductFactory> */
     use HasFactory;
-    
-    
+
+
     protected $fillable = [
         "name",
         "description",
@@ -49,12 +51,19 @@ class Product extends Model
         "category_id",
     ];
 
-    
-    public function category(): BelongsTo {
+
+    public function category(): BelongsTo
+    {
         return $this->belongsTo(Category::class);
     }
-    
-    public function image():HasMany {
+
+    public function image(): HasMany
+    {
         return $this->hasMany(Image::class);
+    }
+
+    public function purchase(): HasMany
+    {
+        return $this->hasMany(Purchase::class);
     }
 }

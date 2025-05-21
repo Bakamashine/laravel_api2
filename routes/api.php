@@ -26,8 +26,10 @@ Route::middleware('auth:sanctum')
         Route::controller(ProductAPIController::class)
             ->group(function () {
                 Route::get("/products/{product}", 'show');
+                Route::post('/products/{product}/buy', 'buy');
+                Route::post('/payment-webhook', 'webhook')->middleware('abilities:temp');
             });
-            
+
     });
 
 
