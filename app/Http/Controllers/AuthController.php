@@ -22,6 +22,10 @@ class AuthController extends Controller
 
     }
 
+    /**
+     * Вывод страницы с логином
+     * @return \Inertia\Response|\Inertia\ResponseFactory
+     */
     public function up() {
         return inertia("auth/login");
     }

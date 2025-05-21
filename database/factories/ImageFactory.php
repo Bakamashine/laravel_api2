@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class ImageFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * Фабрика картинок
+     * Генерирует только не существующую ссылку
      *
      * @return array<string, mixed>
      */

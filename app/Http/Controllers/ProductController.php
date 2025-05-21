@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 
 class ProductController extends AdminController
 {
+    /**
+     * Итоговый путь для EditProduct
+     * @var string
+     */
     private string $redact_product;
 
     public function __construct()
@@ -19,7 +23,7 @@ class ProductController extends AdminController
     }
 
     /**
-     * Display a listing of the resource.
+     * Открывает основную страницу с продуктами
      */
     public function index()
     {
@@ -43,7 +47,8 @@ class ProductController extends AdminController
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Добавление нового продукта
+     * @param StoreProductRequest $request
      */
     public function store(StoreProductRequest $request)
     {
@@ -59,7 +64,8 @@ class ProductController extends AdminController
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Открытие страницы с редактирование товара
+     * @param Product $product
      */
     public function edit(Product $product)
     {
@@ -73,7 +79,10 @@ class ProductController extends AdminController
     }
 
     /**
-     * Update the specified resource in storage.
+     * Обновление продукта
+     * !FIXME: Не работает
+     * @param UpdateProductRequest $request
+     * @param Product $product
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
@@ -82,7 +91,8 @@ class ProductController extends AdminController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Удаление товара
+     * @param Product $product
      */
     public function destroy(Product $product)
     {

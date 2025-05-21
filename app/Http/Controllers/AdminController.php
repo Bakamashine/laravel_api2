@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+/**
+ * Основной контроллер Администратора
+ */
 class AdminController extends Controller
 {
     use \App\AdminTrait;

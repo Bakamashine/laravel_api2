@@ -25,6 +25,10 @@ class RegisterController extends Controller
         ], 201);
     }
     
+    /**
+     * Отображение страницы с регистрацией
+     * @return \Inertia\Response|\Inertia\ResponseFactory
+     */
     public function up() {
         return inertia("auth/register");
     }

@@ -17,7 +17,7 @@ class CategoryController extends AdminController
     }
 
     /**
-     * Display a listing of the resource.
+     * Вывод основной страницы с категориями 
      */
     public function index()
     {
@@ -36,7 +36,8 @@ class CategoryController extends AdminController
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Добавление новой категории
+     * @param StoreCategoryRequest $request
      */
     public function store(StoreCategoryRequest $request)
     {
@@ -53,7 +54,8 @@ class CategoryController extends AdminController
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Открытие страницы для обновления
+     * @param Category $category
      */
     public function edit(Category $category)
     {
@@ -61,19 +63,19 @@ class CategoryController extends AdminController
     }
 
     /**
-     * Update the specified resource in storage.
+     * Обновление категории
+     * @param UpdateCategoryRequest $request
+     * @param Category $category
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        // $request->validated();
-        // $category->update($request->all());
-        
         CategoryService::update($request->all(), $category);
         return redirect()->route("category.index");
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Удаление категории
+     * @param Category $category
      */
     public function destroy(Category $category)
     {

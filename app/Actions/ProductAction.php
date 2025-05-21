@@ -22,18 +22,11 @@ class ProductAction
     private static function uploadImage(Request $request): array
     {
         $urls = [];
-        // if ($request->hasFile('image_urls')) {
-        //     $file = $request->file('image_urls')->store('products', 'public');
-        //     return Storage::url($file);
-        // } else
-        //     return null;
-        
         if ($request->hasFile('image_urls')) {
             foreach ($request->file('image_urls') as $file) {
                 $urls[] = Storage::url($file->store('products', 'public'));
             }
         }
-        
         return $urls;
     }
     

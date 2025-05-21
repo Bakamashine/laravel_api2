@@ -2,6 +2,10 @@
 
 namespace App;
 
+/**
+ * Основной трейт для администратора
+ * Помогает прокладывать пути из заранее заготовленных
+ */
 trait AdminTrait
 {
     public $path_admin = "admin";

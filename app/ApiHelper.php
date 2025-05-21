@@ -4,6 +4,9 @@ namespace App;
 use Illuminate\Http\Client\ResponseSequence;
 use Illuminate\Http\JsonResponse;
 
+/**
+ * Трейт в виде сборника шаблонов для ответа JSON
+ */
 trait ApiHelper
 {
     /**
