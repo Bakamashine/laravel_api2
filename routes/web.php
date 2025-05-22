@@ -32,7 +32,7 @@ Route::middleware('auth')
                             Route::get('/product/{product}/edit', 'edit')->name('.edit');
                             Route::post("/product", 'store')->name('.store');
                             Route::post("/product/{product}", 'update')->name(".update");
-                            Route::delete('/product/{product}', 'delete')->name('.destroy');
+                            Route::delete('/product/{product}', 'destroy')->name('.destroy');
 
                         });
                 }

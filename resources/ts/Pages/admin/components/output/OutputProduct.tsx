@@ -34,7 +34,7 @@ function OutputProduct({
                                 <td>{item.id}</td>
                                 <td>{item.name}</td>
                                 <td>{item.category.name}</td>
-                                <td>{item.description}</td>
+                                <td className="text-break">{item.description}</td>
                                 <td>{item.price}</td>
                                 <td>
                                     {item.image.length != 0 ? (

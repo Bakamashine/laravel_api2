@@ -6,9 +6,7 @@ import { FloatingLabel } from "react-bootstrap";
 import { router, usePage } from "@inertiajs/react";
 import { route } from "ziggy-js";
 
-// FIXME: С картинкой не получается отправить из-за метода PUT.
-// Обычный запрос в виде JSON строки работает только с строками
-// Но стоит загрузить файл, то в Request ничего не попадает.
+// FIXME: Не выводится ошибки валидации с изображением
 function EditProduct({
     category,
     product,
@@ -24,7 +22,11 @@ function EditProduct({
         values.image === undefined && delete values.image;
 
         console.log("values: ", values);
-        router.post(`/product/${product.id}?_method=PUT`, values as Record<string, any>);
+        router.post(`/product/${product.id}?_method=PUT`, values as Record<string, any>, {
+            onError: () => {
+                console.log("errors: ", errors);
+            }
+        });
     }
 
     const [values, setValues] = useState<ProductUpdate>({
@@ -131,7 +133,7 @@ function EditProduct({
                         onChange={uploadImage}
                         multiple
                     />
-                    <p className="red">{errors.image_urls}</p>
+            {errors.image}
                 </Form.Group>
 
                 <Button variant="primary" type="submit">

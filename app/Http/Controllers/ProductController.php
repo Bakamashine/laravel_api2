@@ -80,7 +80,6 @@ class ProductController extends AdminController
 
     /**
      * Обновление продукта
-     * !FIXME: Не работает
      * @param UpdateProductRequest $request
      * @param Product $product
      */

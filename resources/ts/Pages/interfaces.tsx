@@ -1,14 +1,3 @@
-// export interface Image {
-//     id?: number,
-//     urls_image?: string
-// }
-
-// interface ImageInterface {
-//     product_id: number,
-//     image_urls: string
-// }
-// type Image = FileList<ImageInterface>[];
-
 interface Image {
     id: number;
     product_id: number;

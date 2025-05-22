@@ -29,7 +29,7 @@ class ProductAction
         }
         return $urls;
     }
-    
+
 
     /**
      * Создание нового продукта
@@ -51,11 +51,26 @@ class ProductAction
             'description' => $request->description,
             'price' => $request->price,
         ]);
-        
+
         $imageUrls = static::uploadImage($request);
         foreach ($imageUrls as $url) {
             $product->image()->create(['image_urls' => $url]);
         }
+    }
+
+    private static function DeleteOldImage(Product $product)
+    {
+        $images = $product->image()->get();
+
+        foreach ($images as $image) {
+            $path = substr($image->image_urls, 9);
+            $result = Storage::disk('public');
+            if ($result->exists($path)) {
+                $result->delete($path);
+            }
+        }
+        
+        $product->image()->delete();
     }
 
     /**
@@ -72,18 +87,14 @@ class ProductAction
             'price' => $request->price,
         ];
 
-        // $image = static::uploadImage($request);
-        // if (!is_null($image)){
-        //     $data['i'] = $image;
-        // }
-        
         $urls = static::uploadImage($request);
         if ($urls) {
+            self::DeleteOldImage($product);
             foreach ($urls as $url) {
                 $product->image()->create(['image_urls' => $url]);
             }
         }
-        
+
         $product->update($data);
     }
 }
