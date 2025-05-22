@@ -6,8 +6,8 @@ import { FloatingLabel } from "react-bootstrap";
 import { router, usePage } from "@inertiajs/react";
 import { route } from "ziggy-js";
 
-// FIXME: С картинкой не получается отправить из-за метода PUT. 
-// Обычный запрос в виде JSON строки работает только с строками 
+// FIXME: С картинкой не получается отправить из-за метода PUT.
+// Обычный запрос в виде JSON строки работает только с строками
 // Но стоит загрузить файл, то в Request ничего не попадает.
 function EditProduct({
     category,
@@ -22,10 +22,9 @@ function EditProduct({
         e.preventDefault();
 
         values.image === undefined && delete values.image;
-        
-        console.log("values: ", values);
 
-        router.put(`/product/${product.id}`, values as Record<string, any>);
+        console.log("values: ", values);
+        router.post(`/product/${product.id}?_method=PUT`, values as Record<string, any>);
     }
 
     const [values, setValues] = useState<ProductUpdate>({
@@ -34,7 +33,7 @@ function EditProduct({
         category_id: product.category_id,
         description: product.description === null ? "" : product.description,
         price: product.price,
-        image: undefined  
+        image: undefined,
     });
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -57,19 +56,16 @@ function EditProduct({
     function uploadImage(e: ChangeEvent<HTMLInputElement>) {
         let files = e.target.files;
         if (files !== null) {
-            let file = files[0];
-            console.log("file: ", file);
             setValues((prevValues) => ({
                 ...prevValues,
-                image_urls: file,
+                image_urls: files,
             }));
-        }
+        } else console.error("Изображений нет");
     }
-    
+
     return (
         <>
             <Form className="m-3 bg-form" method="post" onSubmit={handleSubmit}>
-                <input type="hidden" name="_method" value='put' />
                 {/* Название товара */}
                 <Form.Group className="mb-3" controlId="name">
                     <Form.Label>Название товара</Form.Label>
@@ -127,15 +123,16 @@ function EditProduct({
                 </Form.Group>
 
                 {/* Выберите изображение */}
-                {/* <Form.Group className="mb-3" controlId="image_urls">
+                <Form.Group className="mb-3" controlId="image_urls">
                     <Form.Label>Выберите изображение</Form.Label>
                     <Form.Control
                         type="file"
                         title="Выберите изображение"
                         onChange={uploadImage}
+                        multiple
                     />
                     <p className="red">{errors.image_urls}</p>
-                </Form.Group> */}
+                </Form.Group>
 
                 <Button variant="primary" type="submit">
                     Обновить товар

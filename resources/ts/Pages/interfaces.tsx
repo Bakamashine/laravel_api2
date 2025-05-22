@@ -77,4 +77,5 @@ export interface CategoryInput extends Omit<Category, "id"> {
 export interface ProductUpdate extends Omit<ProductInput, "id" | "image"> {
     id: number;
     image?: Image[];
+    _method?: string;
 }

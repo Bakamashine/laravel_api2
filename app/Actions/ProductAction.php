@@ -72,9 +72,16 @@ class ProductAction
             'price' => $request->price,
         ];
 
-        $image = static::uploadImage($request);
-        if (!is_null($image)){
-            $data['image_urls'] = $image;
+        // $image = static::uploadImage($request);
+        // if (!is_null($image)){
+        //     $data['i'] = $image;
+        // }
+        
+        $urls = static::uploadImage($request);
+        if ($urls) {
+            foreach ($urls as $url) {
+                $product->image()->create(['image_urls' => $url]);
+            }
         }
         
         $product->update($data);
