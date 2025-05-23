@@ -28,6 +28,16 @@ cp .env.example .env
 php artisan key:generate
 ```
 
+Позже, сделайте ссылку на хранилище
+```bash
+php artisan storage:link
+```
+
+Так как в зависимостях указано symfony/filesystem, можно сделать путь относительным
+```bash
+php artisan storage:link --relative
+```
+
 После этого можно сделать миграцию (желательно с сидером)
 
 ```bash
@@ -51,3 +61,10 @@ php artisan serve # Это запустит обычный отладочный 
 yarn dev # или же npm run dev
 ```
 Это включит сборку JS пакетов. (использовал Inertia+React)
+
+Для работы с внешним сайтом, используете вот этот сайт: https://github.com/Bakamashine/two_server
+После установки, запустите его такой командой:
+
+```bash
+php -S localhost:9001
+```
